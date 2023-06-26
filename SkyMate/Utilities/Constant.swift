@@ -48,7 +48,10 @@ struct Constant {
         return "en-US"
       }
     }
+  }
 
+  enum Name {
+    static let queueLock = "QueueLock"
   }
 
   enum Symbol {

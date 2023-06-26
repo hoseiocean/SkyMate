@@ -5,7 +5,9 @@
 //  Created by Thomas Heinis on 26/06/2023.
 //
 
-final class TranscriptionSegmentQueue: Queue<SMTranscriptionSegment> {
+import Speech
+
+final class TranscriptionSegmentQueue: Queue<SFTranscriptionSegment> {
 
   // MARK: - Properties
 
@@ -25,7 +27,7 @@ final class TranscriptionSegmentQueue: Queue<SMTranscriptionSegment> {
 
   // MARK: - Public Methods
 
-  override func enqueue(_ segment: SMTranscriptionSegment) {
+  override func enqueue(_ segment: SFTranscriptionSegment) {
     super.enqueue(segment)
     transcriptionProcessor?.process(self)
   }
