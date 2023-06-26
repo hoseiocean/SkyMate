@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  SkyMate
+
+  Created by Thomas Heinis on 11/06/2023.
+  
+*/
+
+"ScreenText_command" = "A Command";
+"ScreenText_defaultMessage" = "Waiting for order";

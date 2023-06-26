@@ -7,18 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E9D759212A35EF3700DE847C /* SkyMateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D759202A35EF3700DE847C /* SkyMateApp.swift */; };
+		E933DC012A3F7D3900B18A34 /* RecognitionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E933DC002A3F7D3900B18A34 /* RecognitionObserver.swift */; };
+		E9461AEE2A49C54500EEA3FD /* TranscriptionSegmentQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9461AED2A49C54500EEA3FD /* TranscriptionSegmentQueue.swift */; };
+		E9923C802A3F66FB000553F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9923C7F2A3F66FB000553F5 /* Assets.xcassets */; };
+		E992E3902A3B5AD3002336A7 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992E38F2A3B5AD3002336A7 /* PermissionManager.swift */; };
+		E992E3922A3B5AFF002336A7 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992E3912A3B5AFF002336A7 /* AudioManager.swift */; };
+		E992E3942A3B5B5F002336A7 /* RecognitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992E3932A3B5B5F002336A7 /* RecognitionManager.swift */; };
+		E992E3962A3B5BF6002336A7 /* TranscriptionProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992E3952A3B5BF6002336A7 /* TranscriptionProcessor.swift */; };
+		E994ECA82A3B63FC00A475E5 /* StringDictionary+KeyMatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994ECA72A3B63FC00A475E5 /* StringDictionary+KeyMatching.swift */; };
+		E994ECAA2A3B9FC600A475E5 /* DictionaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994ECA92A3B9FC600A475E5 /* DictionaryManager.swift */; };
+		E9A772612A3C3E8A005BFFA6 /* Commands.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9A772632A3C3E8A005BFFA6 /* Commands.strings */; };
+		E9AC444F2A3A5934004FE538 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC444E2A3A5934004FE538 /* Queue.swift */; };
+		E9BB56252A41F2BF00CEF31E /* SMTranscriptionSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BB56242A41F2BE00CEF31E /* SMTranscriptionSegment.swift */; };
+		E9C36E672A4498C9008CBE66 /* RecognitionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C36E662A4498C9008CBE66 /* RecognitionProvider.swift */; };
+		E9D759212A35EF3700DE847C /* SkyMate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D759202A35EF3700DE847C /* SkyMate.swift */; };
 		E9D759232A35EF3700DE847C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D759222A35EF3700DE847C /* ContentView.swift */; };
-		E9D759252A35EF3800DE847C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D759242A35EF3800DE847C /* Assets.xcassets */; };
 		E9D759282A35EF3800DE847C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D759272A35EF3800DE847C /* Preview Assets.xcassets */; };
+		E9D759312A35F14100DE847C /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D759302A35F14100DE847C /* Localizable.swift */; };
+		E9D759362A35F1B500DE847C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9D759382A35F1B500DE847C /* Localizable.strings */; };
+		E9D7593C2A35F2C900DE847C /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D7593B2A35F2C900DE847C /* Constant.swift */; };
+		E9D759422A35FEED00DE847C /* String+Normalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D759412A35FEED00DE847C /* String+Normalization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E933DC002A3F7D3900B18A34 /* RecognitionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionObserver.swift; sourceTree = "<group>"; };
+		E9461AED2A49C54500EEA3FD /* TranscriptionSegmentQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionSegmentQueue.swift; sourceTree = "<group>"; };
+		E9923C7F2A3F66FB000553F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E992E38F2A3B5AD3002336A7 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
+		E992E3912A3B5AFF002336A7 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		E992E3932A3B5B5F002336A7 /* RecognitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionManager.swift; sourceTree = "<group>"; };
+		E992E3952A3B5BF6002336A7 /* TranscriptionProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionProcessor.swift; sourceTree = "<group>"; };
+		E994ECA72A3B63FC00A475E5 /* StringDictionary+KeyMatching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringDictionary+KeyMatching.swift"; sourceTree = "<group>"; };
+		E994ECA92A3B9FC600A475E5 /* DictionaryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryManager.swift; sourceTree = "<group>"; };
+		E9A772622A3C3E8A005BFFA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Commands.strings; sourceTree = "<group>"; };
+		E9A772642A3C3E8D005BFFA6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Commands.strings; sourceTree = "<group>"; };
+		E9A772652A3C3E8E005BFFA6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Commands.strings; sourceTree = "<group>"; };
+		E9AC444E2A3A5934004FE538 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		E9BB56242A41F2BE00CEF31E /* SMTranscriptionSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMTranscriptionSegment.swift; sourceTree = "<group>"; };
+		E9C36E662A4498C9008CBE66 /* RecognitionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionProvider.swift; sourceTree = "<group>"; };
 		E9D7591D2A35EF3700DE847C /* SkyMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9D759202A35EF3700DE847C /* SkyMateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyMateApp.swift; sourceTree = "<group>"; };
+		E9D759202A35EF3700DE847C /* SkyMate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyMate.swift; sourceTree = "<group>"; };
 		E9D759222A35EF3700DE847C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E9D759242A35EF3800DE847C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9D759272A35EF3800DE847C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E9D759302A35F14100DE847C /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		E9D759372A35F1B500DE847C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9D759392A35F1D400DE847C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9D7593A2A35F1DB00DE847C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E9D7593B2A35F2C900DE847C /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		E9D759412A35FEED00DE847C /* String+Normalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Normalization.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +68,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E9AC444D2A3A5920004FE538 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E992E3912A3B5AFF002336A7 /* AudioManager.swift */,
+				E994ECA92A3B9FC600A475E5 /* DictionaryManager.swift */,
+				E992E38F2A3B5AD3002336A7 /* PermissionManager.swift */,
+				E9AC444E2A3A5934004FE538 /* Queue.swift */,
+				E933DC002A3F7D3900B18A34 /* RecognitionObserver.swift */,
+				E992E3932A3B5B5F002336A7 /* RecognitionManager.swift */,
+				E9C36E662A4498C9008CBE66 /* RecognitionProvider.swift */,
+				E9BB56242A41F2BE00CEF31E /* SMTranscriptionSegment.swift */,
+				E992E3952A3B5BF6002336A7 /* TranscriptionProcessor.swift */,
+				E9461AED2A49C54500EEA3FD /* TranscriptionSegmentQueue.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E9D759142A35EF3700DE847C = {
 			isa = PBXGroup;
 			children = (
@@ -51,9 +104,11 @@
 		E9D7591F2A35EF3700DE847C /* SkyMate */ = {
 			isa = PBXGroup;
 			children = (
-				E9D759202A35EF3700DE847C /* SkyMateApp.swift */,
-				E9D759222A35EF3700DE847C /* ContentView.swift */,
-				E9D759242A35EF3800DE847C /* Assets.xcassets */,
+				E9AC444D2A3A5920004FE538 /* Models */,
+				E9D7592E2A35F09C00DE847C /* Views */,
+				E9D7592F2A35F12200DE847C /* Utilities */,
+				E9D759322A35F17F00DE847C /* Resources */,
+				E9D759202A35EF3700DE847C /* SkyMate.swift */,
 				E9D759262A35EF3800DE847C /* Preview Content */,
 			);
 			path = SkyMate;
@@ -65,6 +120,51 @@
 				E9D759272A35EF3800DE847C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E9D7592E2A35F09C00DE847C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E9D759222A35EF3700DE847C /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E9D7592F2A35F12200DE847C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E9D759402A35FEDB00DE847C /* Extensions */,
+				E9D7593B2A35F2C900DE847C /* Constant.swift */,
+				E9D759302A35F14100DE847C /* Localizable.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E9D759322A35F17F00DE847C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E9923C7F2A3F66FB000553F5 /* Assets.xcassets */,
+				E9D759352A35F1AA00DE847C /* Localizables */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E9D759352A35F1AA00DE847C /* Localizables */ = {
+			isa = PBXGroup;
+			children = (
+				E9D759382A35F1B500DE847C /* Localizable.strings */,
+				E9A772632A3C3E8A005BFFA6 /* Commands.strings */,
+			);
+			path = Localizables;
+			sourceTree = "<group>";
+		};
+		E9D759402A35FEDB00DE847C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E9D759412A35FEED00DE847C /* String+Normalization.swift */,
+				E994ECA72A3B63FC00A475E5 /* StringDictionary+KeyMatching.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -109,6 +209,8 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
+				es,
 			);
 			mainGroup = E9D759142A35EF3700DE847C;
 			productRefGroup = E9D7591E2A35EF3700DE847C /* Products */;
@@ -126,7 +228,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9D759282A35EF3800DE847C /* Preview Assets.xcassets in Resources */,
-				E9D759252A35EF3800DE847C /* Assets.xcassets in Resources */,
+				E9D759362A35F1B500DE847C /* Localizable.strings in Resources */,
+				E9923C802A3F66FB000553F5 /* Assets.xcassets in Resources */,
+				E9A772612A3C3E8A005BFFA6 /* Commands.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,17 +242,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9D759232A35EF3700DE847C /* ContentView.swift in Sources */,
-				E9D759212A35EF3700DE847C /* SkyMateApp.swift in Sources */,
+				E9D759312A35F14100DE847C /* Localizable.swift in Sources */,
+				E9461AEE2A49C54500EEA3FD /* TranscriptionSegmentQueue.swift in Sources */,
+				E994ECA82A3B63FC00A475E5 /* StringDictionary+KeyMatching.swift in Sources */,
+				E9BB56252A41F2BF00CEF31E /* SMTranscriptionSegment.swift in Sources */,
+				E9D759422A35FEED00DE847C /* String+Normalization.swift in Sources */,
+				E9D759212A35EF3700DE847C /* SkyMate.swift in Sources */,
+				E9C36E672A4498C9008CBE66 /* RecognitionProvider.swift in Sources */,
+				E992E3962A3B5BF6002336A7 /* TranscriptionProcessor.swift in Sources */,
+				E9D7593C2A35F2C900DE847C /* Constant.swift in Sources */,
+				E992E3922A3B5AFF002336A7 /* AudioManager.swift in Sources */,
+				E992E3942A3B5B5F002336A7 /* RecognitionManager.swift in Sources */,
+				E992E3902A3B5AD3002336A7 /* PermissionManager.swift in Sources */,
+				E933DC012A3F7D3900B18A34 /* RecognitionObserver.swift in Sources */,
+				E9AC444F2A3A5934004FE538 /* Queue.swift in Sources */,
+				E994ECAA2A3B9FC600A475E5 /* DictionaryManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E9A772632A3C3E8A005BFFA6 /* Commands.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9A772622A3C3E8A005BFFA6 /* en */,
+				E9A772642A3C3E8D005BFFA6 /* fr */,
+				E9A772652A3C3E8E005BFFA6 /* es */,
+			);
+			name = Commands.strings;
+			sourceTree = "<group>";
+		};
+		E9D759382A35F1B500DE847C /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E9D759372A35F1B500DE847C /* en */,
+				E9D759392A35F1D400DE847C /* fr */,
+				E9D7593A2A35F1DB00DE847C /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E9D759292A35EF3800DE847C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -209,6 +351,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

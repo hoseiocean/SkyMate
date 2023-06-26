@@ -1,0 +1,54 @@
+/* 
+  Commands.strings
+  SkyMate
+
+  Created by Thomas Heinis on 16/06/2023.
+  
+*/
+
+// MARK: - Aeronautical night
+
+"nuit" = "Nuit aéronautique";
+"nuit aero" = "Nuit aéronautique";
+"nuit aeronautique" = "Nuit aéronautique";
+
+// MARK: - Cancel
+
+"annule" = "Annuler";
+"annuler" = "Annuler";
+
+// MARK: - Destination
+
+"destination" = "Destination";
+"destinations" = "Destination";
+
+
+// MARK: - METAR
+
+"mais tar" = "METAR";
+"mais tard" = "METAR";
+"mais Thor" = "METAR";
+"mes tar" = "METAR";
+"mes tards" = "METAR";
+"mes Thor" = "METAR";
+"mets tar" = "METAR";
+"mets tard" = "METAR";
+"mets tards" = "METAR";
+"mets Thor" = "METAR";
+"Médard" = "METAR";
+"métare" = "METAR";
+"mitard" = "METAR";
+"mitards" = "METAR";
+"mittard" = "METAR";
+"mittards" = "METAR";
+
+// MARK: - NOTAM
+
+"ne t'aime" = "NOTAM";
+"ne t'aimes" = "NOTAM";
+"no time" = "NOTAM";
+"notamment" = "NOTAM";
+
+// MARK: - OK
+
+"OK" = "OK";
