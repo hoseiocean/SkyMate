@@ -7,8 +7,6 @@
 
 import Foundation
 
-/// This extension adds a method to Dictionary where the Key and Value are Strings.
-/// The method helps find a key or a prefix in the dictionary.
 extension Dictionary<String, String> {
 
   /// This method is used to find a key or its prefix in the dictionary.
