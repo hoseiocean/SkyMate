@@ -18,7 +18,7 @@ class RecognitionProvider: ObservableObject {
       if let speechRecognizer = SFSpeechRecognizer(locale: Constant.Identifier.locale) {
         let permissionManager = PermissionManager()
         let audioManager = AudioManager()
-        let segmentsQueue = TranscriptionSegmentQueue(recognitionObserver: recognitionObserver)
+        let segmentsQueue = try TranscriptionSegmentQueue(recognitionObserver: recognitionObserver)
 
         recognitionManager = try RecognitionManager(
           audioManager: audioManager,

@@ -14,13 +14,13 @@ typealias HomophoneToSMTermDictionary = [String: String]
 /// SMTermProtocol defines an interface that all terms
 /// in this application should conform to.
 protocol SMTermProtocol: RawRepresentable where RawValue == String {
-
+  
   // All possible cases of the terms.
   static var allCases: [Self] { get }
-
+  
   // Localized representation of the term.
   var localized: String { get }
-
+  
   // The name of the resource file that contains the terms.
   static var resourceName: String { get }
 }
@@ -89,52 +89,57 @@ extension SMCommand: SMTermProtocol {
   }
 }
 
+/// A manager class that handles the loading and management of the dictionary of terms.
 final class DictionaryManager {
-
+  
   // MARK: - Private Properties
-
+  
   private enum Error: Swift.Error {
     case fileNotFound(file: String)
     case fileReadError(file: String)
   }
-
-  // Mapping of homophones to terms. This is used to interpret transcriptions.
-  let homophoneToSMTermDictionary: HomophoneToSMTermDictionary
-
+  
   // MARK: - Public Properties
-
+  
+  /// Mapping of homophones to terms. This is used to interpret transcriptions.
+  let homophoneToSMTermDictionary: HomophoneToSMTermDictionary
+  
+  /// An array of normalized keys from the homophone to term dictionary.
   var normalizedKeys: [String] {
     Array(homophoneToSMTermDictionary.keys).map { $0.normalized }
   }
-
-  // The term type for this handler. It’s used for finding the appropriate terms in the transcriptions.
+  
+  /// The type of term for this dictionary manager. Used for finding the appropriate terms in transcriptions.
   var termType: any SMTermProtocol.Type
-
+  
   // MARK: - Initialization
-
-  /// Initialization of TermsHandler. A dictionary file for the given term type is loaded and an error
-  /// is thrown if it can’t be loaded.
+  
+  /// Initializes a new instance of the `DictionaryManager` class with the specified term type.
+  /// - Parameter termType: The type of term for this dictionary manager. Defaults to `SMCommand.self`.
+  /// - Throws: An error of type `Error` if the dictionary loading fails.
   init<T: SMTermProtocol>(for termType: T.Type = SMCommand.self) throws {
     self.termType = termType
     homophoneToSMTermDictionary = try DictionaryManager.loadDictionaryFile(for: termType)
   }
-
+  
   // MARK: - Public Methods
-
-  /// This method loads the dictionary from the resource file for a given term type. If the file can’t
-  /// be found or loaded, it throws an error.
+  
+  /// Loads the dictionary from the resource file for the specified term type.
+  /// - Parameter termType: The type of term for which to load the dictionary.
+  /// - Returns: The loaded dictionary as a `HomophoneToSMTermDictionary`.
+  /// - Throws: An error of type `Error` if the dictionary file cannot be found or read.
   static func loadDictionaryFile<T: SMTermProtocol>(for termType: T.Type) throws -> HomophoneToSMTermDictionary {
     let resource = termType.resourceName
-
+    
     guard let path = Bundle.main.path(forResource: resource, ofType: Constant.File.Extension.strings) else {
       throw Error.fileNotFound(file: resource + Constant.Character.point + Constant.File.Extension.strings)
     }
-
+    
     guard let dictionary = NSDictionary(contentsOfFile: path) as? HomophoneToSMTermDictionary else {
       throw Error.fileReadError(file: path)
     }
-
+    
     return dictionary
   }
-
+  
 }
