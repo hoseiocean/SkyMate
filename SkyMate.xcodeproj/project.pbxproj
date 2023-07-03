@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		E933DC012A3F7D3900B18A34 /* RecognitionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = E933DC002A3F7D3900B18A34 /* RecognitionObserver.swift */; };
 		E9461AEE2A49C54500EEA3FD /* TranscriptionSegmentQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9461AED2A49C54500EEA3FD /* TranscriptionSegmentQueue.swift */; };
+		E972AD082A4B75BB00B36B9E /* NetworkStatusMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972AD072A4B75BB00B36B9E /* NetworkStatusMonitor.swift */; };
 		E97A64702A4A2265009D847E /* SFTranscriptionSegmentQueue+Joining.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97A646F2A4A2265009D847E /* SFTranscriptionSegmentQueue+Joining.swift */; };
+		E98031622A4C73790027B4A4 /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98031612A4C73790027B4A4 /* Localizer.swift */; };
 		E9923C802A3F66FB000553F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9923C7F2A3F66FB000553F5 /* Assets.xcassets */; };
 		E992E3902A3B5AD3002336A7 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992E38F2A3B5AD3002336A7 /* PermissionManager.swift */; };
 		E992E3922A3B5AFF002336A7 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992E3912A3B5AFF002336A7 /* AudioManager.swift */; };
@@ -17,6 +19,7 @@
 		E992E3962A3B5BF6002336A7 /* TranscriptionProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E992E3952A3B5BF6002336A7 /* TranscriptionProcessor.swift */; };
 		E994ECA82A3B63FC00A475E5 /* StringDictionary+KeyMatching.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994ECA72A3B63FC00A475E5 /* StringDictionary+KeyMatching.swift */; };
 		E994ECAA2A3B9FC600A475E5 /* DictionaryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E994ECA92A3B9FC600A475E5 /* DictionaryManager.swift */; };
+		E9A162CA2A4B2242002D17A1 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A162C92A4B2242002D17A1 /* ButtonView.swift */; };
 		E9A772612A3C3E8A005BFFA6 /* Commands.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9A772632A3C3E8A005BFFA6 /* Commands.strings */; };
 		E9AC444F2A3A5934004FE538 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC444E2A3A5934004FE538 /* Queue.swift */; };
 		E9C36E672A4498C9008CBE66 /* RecognitionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C36E662A4498C9008CBE66 /* RecognitionProvider.swift */; };
@@ -32,7 +35,10 @@
 /* Begin PBXFileReference section */
 		E933DC002A3F7D3900B18A34 /* RecognitionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionObserver.swift; sourceTree = "<group>"; };
 		E9461AED2A49C54500EEA3FD /* TranscriptionSegmentQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionSegmentQueue.swift; sourceTree = "<group>"; };
+		E972AD072A4B75BB00B36B9E /* NetworkStatusMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatusMonitor.swift; sourceTree = "<group>"; };
 		E97A646F2A4A2265009D847E /* SFTranscriptionSegmentQueue+Joining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SFTranscriptionSegmentQueue+Joining.swift"; sourceTree = "<group>"; };
+		E98031612A4C73790027B4A4 /* Localizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
+		E98A4EB52A4ED59D00B373EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E9923C7F2A3F66FB000553F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E992E38F2A3B5AD3002336A7 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		E992E3912A3B5AFF002336A7 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
@@ -40,6 +46,7 @@
 		E992E3952A3B5BF6002336A7 /* TranscriptionProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionProcessor.swift; sourceTree = "<group>"; };
 		E994ECA72A3B63FC00A475E5 /* StringDictionary+KeyMatching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringDictionary+KeyMatching.swift"; sourceTree = "<group>"; };
 		E994ECA92A3B9FC600A475E5 /* DictionaryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryManager.swift; sourceTree = "<group>"; };
+		E9A162C92A4B2242002D17A1 /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		E9A772622A3C3E8A005BFFA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Commands.strings; sourceTree = "<group>"; };
 		E9A772642A3C3E8D005BFFA6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Commands.strings; sourceTree = "<group>"; };
 		E9A772652A3C3E8E005BFFA6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Commands.strings; sourceTree = "<group>"; };
@@ -104,6 +111,8 @@
 				E97A646C2A4A185E009D847E /* Recognition */,
 				E97A646D2A4A1866009D847E /* Transcription */,
 				E9AC444E2A3A5934004FE538 /* Queue.swift */,
+				E972AD072A4B75BB00B36B9E /* NetworkStatusMonitor.swift */,
+				E98031612A4C73790027B4A4 /* Localizer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -149,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				E9D759222A35EF3700DE847C /* ContentView.swift */,
+				E9A162C92A4B2242002D17A1 /* ButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +178,7 @@
 			children = (
 				E9923C7F2A3F66FB000553F5 /* Assets.xcassets */,
 				E9D759352A35F1AA00DE847C /* Localizables */,
+				E98A4EB52A4ED59D00B373EF /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -237,6 +248,9 @@
 				es,
 			);
 			mainGroup = E9D759142A35EF3700DE847C;
+			packageReferences = (
+				E9E78A612A535B9200C375AC /* XCRemoteSwiftPackageReference "SFSymbolsMacro" */,
+			);
 			productRefGroup = E9D7591E2A35EF3700DE847C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -269,6 +283,7 @@
 				E9D759312A35F14100DE847C /* Localizable.swift in Sources */,
 				E9461AEE2A49C54500EEA3FD /* TranscriptionSegmentQueue.swift in Sources */,
 				E994ECA82A3B63FC00A475E5 /* StringDictionary+KeyMatching.swift in Sources */,
+				E9A162CA2A4B2242002D17A1 /* ButtonView.swift in Sources */,
 				E9D759422A35FEED00DE847C /* String+Normalization.swift in Sources */,
 				E9D759212A35EF3700DE847C /* SkyMate.swift in Sources */,
 				E9C36E672A4498C9008CBE66 /* RecognitionProvider.swift in Sources */,
@@ -276,11 +291,13 @@
 				E9D7593C2A35F2C900DE847C /* Constant.swift in Sources */,
 				E992E3922A3B5AFF002336A7 /* AudioManager.swift in Sources */,
 				E992E3942A3B5B5F002336A7 /* RecognitionManager.swift in Sources */,
+				E98031622A4C73790027B4A4 /* Localizer.swift in Sources */,
 				E992E3902A3B5AD3002336A7 /* PermissionManager.swift in Sources */,
 				E933DC012A3F7D3900B18A34 /* RecognitionObserver.swift in Sources */,
 				E9AC444F2A3A5934004FE538 /* Queue.swift in Sources */,
 				E97A64702A4A2265009D847E /* SFTranscriptionSegmentQueue+Joining.swift in Sources */,
 				E994ECAA2A3B9FC600A475E5 /* DictionaryManager.swift in Sources */,
+				E972AD082A4B75BB00B36B9E /* NetworkStatusMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +454,9 @@
 				DEVELOPMENT_TEAM = 35HGB43CC5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SkyMate/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SkyMate;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -466,6 +486,9 @@
 				DEVELOPMENT_TEAM = 35HGB43CC5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SkyMate/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SkyMate;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -506,6 +529,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E9E78A612A535B9200C375AC /* XCRemoteSwiftPackageReference "SFSymbolsMacro" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lukepistrol/SFSymbolsMacro.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = E9D759152A35EF3700DE847C /* Project object */;
 }

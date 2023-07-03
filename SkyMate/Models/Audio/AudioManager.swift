@@ -20,6 +20,10 @@ final class AudioManager {
     static let bufferSize: UInt32 = 1024
   }
 
+  private enum Error: Swift.Error {
+    case audioEngineStartingFailed(error: Swift.Error)
+  }
+
   private let audioEngine = AVAudioEngine()
 
   weak var delegate: AudioManagerDelegate?
@@ -33,6 +37,10 @@ final class AudioManager {
   /// Starts listening for audio input.
   /// Throws an error if there is an issue starting the audio engine or setting up the audio session.
   func startListening() throws {
+    if isListening {
+      try stopListening()
+    }
+
     let audioSession = AVAudioSession.sharedInstance()
     try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
     try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
@@ -51,7 +59,7 @@ final class AudioManager {
     do {
       try audioEngine.start()
     } catch let error {
-      fatalError("Error starting AVAudioEngine: \(error)")
+      throw Error.audioEngineStartingFailed(error: error)
     }
   }
 
@@ -64,4 +72,7 @@ final class AudioManager {
     }
   }
 
+  deinit {
+    try? stopListening()
+  }
 }

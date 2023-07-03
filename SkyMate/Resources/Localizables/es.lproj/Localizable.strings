@@ -6,5 +6,8 @@
   
 */
 
+"ButtonText_listening" = "Escuchando";
+"ButtonText_selectLanguage" = "Seleccionar idioma";
+
 "ScreenText_command" = "A Command";
 "ScreenText_defaultMessage" = "Waiting for order";

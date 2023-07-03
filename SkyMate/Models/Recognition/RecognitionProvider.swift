@@ -5,7 +5,6 @@
 //  Created by Thomas Heinis on 22/06/2023.
 //
 
-import Foundation
 import Speech
 
 class RecognitionProvider: ObservableObject {

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Info.plist
+   SkyMate
+
+   Created by Thomas Heinis on 30/06/2023.
+   Copyright (c) 2023 ___ORGANIZATIONNAME___. All rights reserved.
+-->
+<plist version="1.0">
+  <dict>
+      <key>NSSpeechRecognitionUsageDescription</key>
+      <string>We use speech recognition to convert your spoken words into text.</string>
+      <key>NSMicrophoneUsageDescription</key>
+      <string>We need to access your microphone to capture audio for speech recognition.</string>
+  </dict>
+</plist>

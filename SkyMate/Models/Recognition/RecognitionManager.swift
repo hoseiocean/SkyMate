@@ -22,6 +22,8 @@ final class RecognitionManager {
 
   /// Defines custom error types thrown by RecognitionManager.
   private enum Error: Swift.Error {
+    ///
+    case audioBufferFailed
     /// Thrown when there is no last segment in the current transcription.
     case lastSegmentFailed
     /// Thrown when the recognition request does not support reporting partial results.
@@ -44,7 +46,7 @@ final class RecognitionManager {
   weak var delegate: RecognitionManagerDelegate?
 
   private var isStopping: Bool = false
-  private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest
+  private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
   private var recognitionTask: SFSpeechRecognitionTask?
   private var shouldRetry = true
 
@@ -71,9 +73,6 @@ final class RecognitionManager {
     self.segmentsQueue = segmentsQueue
     self.recognitionObserver = recognitionObserver
 
-    recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-    recognitionRequest.requiresOnDeviceRecognition = true
-
     audioManager.delegate = self
   }
 
@@ -85,7 +84,9 @@ final class RecognitionManager {
   private func handleRecognitionError(_ error: Swift.Error, delay: DispatchTimeInterval = DispatchTimeInterval.seconds(1)) {
     guard !isStopping else { return }
 
+    recognitionObserver.isRecognizing = false
     print("An error occurred during recognition:", error)
+
     if self.shouldRetry {
       shouldRetry = false
       DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
@@ -93,6 +94,7 @@ final class RecognitionManager {
         self?.start()
       }
     } else {
+      stop()
       print("Failed restarting the recognition")
       delegate?.recognitionManagerFailedToRestart(self)
     }
@@ -105,6 +107,7 @@ final class RecognitionManager {
   ///           `Error.lastSegmentFailed` if there is no last segment in the current transcription.
   /// The method also handles any errors that occur during recognition by calling `handleRecognitionError(_:)`.
   private func startRecognitionTask() throws -> SFSpeechRecognitionTask {
+    guard let recognitionRequest else { throw Error.audioBufferFailed }
     return speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
       guard let self else {
         return
@@ -143,8 +146,13 @@ final class RecognitionManager {
   /// - Throws: `Error.partialRecognitionNotReported` if the recognition request does not support reporting partial results.
   /// The method also handles any errors that occur during recognition by calling `handleRecognitionError(_:)`.
   func start() {
-    stop()
+    if recognitionObserver.isRecognizing {
+      stop()
+    }
     do {
+      recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+      guard let recognitionRequest else { throw Error.audioBufferFailed }
+      recognitionRequest.requiresOnDeviceRecognition = true
       guard recognitionRequest.shouldReportPartialResults else { throw Error.partialRecognitionNotReported }
       try audioManager.startListening()
       recognitionTask = try startRecognitionTask()
@@ -162,6 +170,10 @@ final class RecognitionManager {
     try? audioManager.stopListening()
     recognitionObserver.isRecognizing = false
   }
+
+  deinit {
+    stop()
+  }
 }
 
 extension RecognitionManager: AudioManagerDelegate {
@@ -172,6 +184,7 @@ extension RecognitionManager: AudioManagerDelegate {
   ///
   /// - Parameter buffer: The `AVAudioPCMBuffer` object containing the new audio data.
   func didReceiveAudioBuffer(_ buffer: AVAudioPCMBuffer) {
+    guard let recognitionRequest else { return }
     recognitionRequest.append(buffer)
   }
 

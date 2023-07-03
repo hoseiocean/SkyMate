@@ -13,17 +13,23 @@ protocol Localizable {
 
 extension Localizable where Self: RawRepresentable, Self.RawValue == String {
   var localized: String {
-    NSLocalizedString(
-      String(describing: Self.self) + Constant.Character.underscore + rawValue,
-      tableName: nil,
-      bundle: Bundle.main,
-      value: Constant.Character.nothing,
-      comment: Constant.Character.nothing
-    )
+    Localizer().localize(String(describing: Self.self) + Constant.Character.underscore + rawValue)
+//    NSLocalizedString(
+//      String(describing: Self.self) + Constant.Character.underscore + rawValue,
+//      tableName: nil,
+//      bundle: Bundle.main,
+//      value: Constant.Character.nothing,
+//      comment: Constant.Character.nothing
+//    )
   }
 }
 
 enum ScreenText: String, Localizable {
   case command
   case defaultMessage
+}
+
+enum ButtonText: String, Localizable {
+  case listening
+  case selectLanguage
 }

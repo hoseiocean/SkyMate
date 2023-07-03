@@ -13,7 +13,7 @@ class Queue<T> {
   // MARK: - Properties
 
   private let capacity: Int
-  private let queueLock = DispatchQueue(label: String(describing: T.self) + Constant.Name.queueLock)
+  private let queueLock = DispatchQueue(label: String(describing: T.self) + Constant.Label.queueLock)
 
   /// The array storing the items of the queue.
   var queue: [T]

@@ -74,18 +74,18 @@ enum SMCommand: String, Localizable, CaseIterable {
 // the file that contains their terms.
 extension SMAnswer: SMTermProtocol {
   static var resourceName: String {
-    return Constant.File.answers
+    return Constant.FileName.answers
   }
 }
 extension SMLetter: SMTermProtocol {
   static var resourceName: String {
-    return Constant.File.letters
+    return Constant.FileName.letters
   }
 }
 
 extension SMCommand: SMTermProtocol {
   static var resourceName: String {
-    return Constant.File.commands
+    return Constant.FileName.commands
   }
 }
 
@@ -131,8 +131,8 @@ final class DictionaryManager {
   static func loadDictionaryFile<T: SMTermProtocol>(for termType: T.Type) throws -> HomophoneToSMTermDictionary {
     let resource = termType.resourceName
     
-    guard let path = Bundle.main.path(forResource: resource, ofType: Constant.File.Extension.strings) else {
-      throw Error.fileNotFound(file: resource + Constant.Character.point + Constant.File.Extension.strings)
+    guard let path = Bundle.main.path(forResource: resource, ofType: Constant.FileType.strings) else {
+      throw Error.fileNotFound(file: resource + Constant.Character.point + Constant.FileType.strings)
     }
     
     guard let dictionary = NSDictionary(contentsOfFile: path) as? HomophoneToSMTermDictionary else {
