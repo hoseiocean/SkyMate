@@ -7,32 +7,40 @@
 
 import Speech
 
-class RecognitionProvider: ObservableObject {
+/// A provider class that manages the speech recognition process using a `RecognitionManager`.
+final class RecognitionProvider: ObservableObject {
 
-  @Published var recognitionObserver = RecognitionObserver()
-  var recognitionManager: RecognitionManager?
+  // MARK: - Properties
 
+  /// The recognition manager responsible for managing the speech recognition process.
+  @Published var recognitionManager: RecognitionManager?
+
+  // MARK: - Initializer
+
+  /// Initializes the recognition provider.
   init() {
     do {
       if let speechRecognizer = SFSpeechRecognizer(locale: Constant.Identifier.locale) {
         let permissionManager = PermissionManager()
         let audioManager = AudioManager()
-        let segmentsQueue = try TranscriptionSegmentQueue(recognitionObserver: recognitionObserver)
+        let segmentsQueue = try TranscriptionSegmentQueue()
 
+        // Initialize the recognition manager with the necessary dependencies
         recognitionManager = try RecognitionManager(
           audioManager: audioManager,
           speechRecognizer: speechRecognizer,
-          segmentsQueue: segmentsQueue,
-          recognitionObserver: recognitionObserver)
+          segmentsQueue: segmentsQueue)
         recognitionManager?.delegate = self
 
+        // Request permissions from the user
         permissionManager.requestAllPermissions { [weak self] allPermissionsGranted in
           guard allPermissionsGranted else {
             // TODO: Handle the case where not all permissions are granted.
             return
           }
 
-          self?.recognitionManager?.start()
+          // Start listening for speech recognition
+          self?.recognitionManager?.listen()
         }
       } else {
         // TODO: Add user-viewable error handling
@@ -48,6 +56,9 @@ class RecognitionProvider: ObservableObject {
 // MARK: - RecognitionManagerDelegate
 
 extension RecognitionProvider: RecognitionManagerDelegate {
+  /// Called when the recognition manager fails to restart the recognition task.
+  ///
+  /// - Parameter manager: The recognition manager instance.
   func recognitionManagerFailedToRestart(_ manager: RecognitionManager) {
     // TODO: Handle the case where recognition failed to restart.
     // This could involve creating a new RecognitionManager instance or handling the situation in another way.
