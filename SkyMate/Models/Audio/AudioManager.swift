@@ -8,7 +8,7 @@
 import AVFAudio
 
 protocol AudioManagerDelegate: AnyObject {
-  func didReceiveAudioBuffer(_ buffer: AVAudioPCMBuffer)
+  func audioManager(_ audioManager: AudioManager, didUpdate buffer: AVAudioPCMBuffer)
 }
 
 final class AudioManager {
@@ -71,8 +71,9 @@ final class AudioManager {
         bufferSize: Configuration.bufferSize,
         format: audioFormat
       ) { [weak self] buffer, _ in
+        guard let self else { return }
         DispatchQueue.main.async {
-          self?.delegate?.didReceiveAudioBuffer(buffer)
+          self.delegate?.audioManager(self, didUpdate: buffer)
         }
       }
       isTapping = true
