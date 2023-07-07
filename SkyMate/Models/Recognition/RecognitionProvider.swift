@@ -7,18 +7,37 @@
 
 import Speech
 
-/// A provider class that manages the speech recognition process using a `RecognitionManager`.
+/// `RecognitionProvider` is a provider class that manages the speech recognition process using a `RecognitionManager`.
+/// This class will initialize and maintain an instance of `RecognitionManager`, restart it if necessary, and handle
+/// any errors encountered during these operations.
 final class RecognitionProvider: ObservableObject {
+
+  // MARK: - Enumerations
+
+  private enum Error: String, Localizable {
+    case speechRecognitionFailedToStart
+    case speechRecognitionNotAvailable
+  }
 
   // MARK: - Properties
 
-  /// The recognition manager responsible for managing the speech recognition process.
+  // A flag to check if a restart attempt has already been made.
+  // This is to prevent repeated attempts to restart the recognition manager.
+  private var hasRestartAttempted = false
+
+  /// The `RecognitionManager` instance responsible for managing the speech recognition process.
   @Published var recognitionManager: RecognitionManager?
 
-  // MARK: - Initializer
+  // MARK: - Initialization
 
-  /// Initializes the recognition provider.
+  /// Initializes the recognition provider by creating a `RecognitionManager`.
   init() {
+    createRecognitionManager()
+  }
+
+  // MARK: - Private Methods
+
+  private func createRecognitionManager() {
     do {
       if let speechRecognizer = SFSpeechRecognizer(locale: Constant.Identifier.locale) {
         let permissionManager = PermissionManager()
@@ -43,25 +62,38 @@ final class RecognitionProvider: ObservableObject {
           self?.recognitionManager?.listen()
         }
       } else {
-        // TODO: Add user-viewable error handling
-        print("Speech recognition is not available for current locale:", Constant.Identifier.locale)
+        handleError(error: Error.speechRecognitionNotAvailable)
       }
     } catch {
-      // TODO: Add user-viewable error handling
-      print("RecognitionManager is not available:", error)
+      handleError(error: Error.speechRecognitionFailedToStart)
     }
+  }
+
+  private func handleError(error: Error) {
+    CommandProcessor.shared.addTerm(error.localized)
+    print(error.rawValue, Constant.Identifier.locale)
   }
 }
 
-// MARK: - RecognitionManagerDelegate
+// MARK: - RecognitionManagerDelegate Conformance
 
 extension RecognitionProvider: RecognitionManagerDelegate {
-  /// Called when the recognition manager fails to restart the recognition task.
+
+  /// Handles the scenario when the recognition manager restarts successfully.
+  ///
+  /// - Parameter manager: The recognition manager instance.
+  func recognitionManagerDidRestartSuccessfully(_ manager: RecognitionManager) {
+    hasRestartAttempted = false
+  }
+
+  /// Handles the scenario when the recognition manager fails to restart the recognition task.
   ///
   /// - Parameter manager: The recognition manager instance.
   func recognitionManagerFailedToRestart(_ manager: RecognitionManager) {
-    // TODO: Handle the case where recognition failed to restart.
-    // This could involve creating a new RecognitionManager instance or handling the situation in another way.
-    print("RecognitionManager failed to restart")
+    guard !hasRestartAttempted else { return }
+    hasRestartAttempted = true
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+      self?.createRecognitionManager()
+    }
   }
 }

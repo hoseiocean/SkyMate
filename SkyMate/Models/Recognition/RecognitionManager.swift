@@ -9,14 +9,26 @@ import Speech
 
 // MARK: - RecognitionManagerDelegate
 
-/// Delegates recognition manager failures, specifically restart failures.
+/// Protocol defining delegate methods to handle recognition manager's events.
+/// This allows observing the lifecycle of the recognition process from outside of `RecognitionManager`.
 protocol RecognitionManagerDelegate: AnyObject {
-  func recognitionManagerFailedToRestart(_ recognitionManager: RecognitionManager)
+  /// Triggered when the recognition manager has successfully restarted.
+  func recognitionManagerDidRestartSuccessfully(_ manager: RecognitionManager)
+  /// Triggered when the recognition manager fails to restart.
+  func recognitionManagerFailedToRestart(_ manager: RecognitionManager)
 }
 
-// MARK: - RecognitionManagerState
+// MARK: - RecognitionManagerState and Operating Mode
 
-/// Enum representing different states of the recognition process.
+/// Enum representing the different operating modes of the recognition manager.
+/// `learning` mode is for training the recognizer and `normal` mode is for production use.
+enum RecognitionManagerOperatingMode {
+  case learning
+  case normal
+}
+
+/// Enum representing the different states of the recognition process.
+/// This is used to track and manage the lifecycle of the recognition process within `RecognitionManager`.
 enum RecognitionManagerState {
   case error(Swift.Error)
   case idle
@@ -27,19 +39,15 @@ enum RecognitionManagerState {
 
 // MARK: - RecognitionManager
 
-/// `RecognitionManager` handles the speech recognition process using audio input from `AudioManager`,
-/// `SFSpeechRecognizer` for speech recognition, and a queue for holding recognized speech segments.
-/// If the recognition task fails, it attempts to restart once. If the restart also fails, it informs
-/// the delegate.
+/// The `RecognitionManager` class is responsible for handling the speech recognition process.
+/// It combines the audio input, speech recognition, and the handling of recognized segments into one coherent process.
 final class RecognitionManager: ObservableObject {
 
   // MARK: - Properties
 
-  /// Custom error types thrown by RecognitionManager.
   private enum Error: Swift.Error {
     case audioBufferFailed
     case lastSegmentFailed
-    case partialRecognitionNotReported
     case recognitionRequestCreationFailed
     case recognitionTaskFailure(error: Swift.Error)
     case speechRecognizerNotAvailable
@@ -47,8 +55,11 @@ final class RecognitionManager: ObservableObject {
     case unexpectedRecognitionResult
   }
 
+  // MARK: - Instance Variables
+
   private let audioManager: AudioManager
   private let dispatchQueue: DispatchQueue
+  private let operatingMode: RecognitionManagerOperatingMode
   private let segmentsQueue: TranscriptionSegmentQueue
   private let speechRecognizer: SFSpeechRecognizer
 
@@ -57,9 +68,11 @@ final class RecognitionManager: ObservableObject {
   private var shouldRetry = true
 
   /// The state of recognition process.
+  /// This is used to communicate the current state of the recognition process to external observers.
   @Published private(set) var state: RecognitionManagerState = .idle
 
-  ///
+  /// The RecognitionManager delegate.
+  /// This is used to communicate major recognition events to the outside world.
   weak var delegate: RecognitionManagerDelegate?
 
   // MARK: - Initialization
@@ -80,21 +93,42 @@ final class RecognitionManager: ObservableObject {
     audioManager: AudioManager,
     speechRecognizer: SFSpeechRecognizer,
     segmentsQueue: TranscriptionSegmentQueue,
-    dispatchQueue: DispatchQueue = .main
+    dispatchQueue: DispatchQueue = .main,
+    operatingMode: RecognitionManagerOperatingMode = .normal
   ) throws {
     guard speechRecognizer.isAvailable else { throw Error.speechRecognizerNotAvailable }
     self.audioManager = audioManager
     self.speechRecognizer = speechRecognizer
     self.segmentsQueue = segmentsQueue
     self.dispatchQueue = dispatchQueue
+    self.operatingMode = operatingMode
     audioManager.delegate = self
   }
 
   // MARK: - Private Methods
 
-  /// Handles an error that occurred during the recognition process.
-  /// If `shouldRetry` is `true`, it attempts to restart the recognition task.
-  /// If the restart also fails, it informs the delegate via the `recognitionManagerFailedToRestart(_:)` method.
+  private func displayTranscriptions(from result: SFSpeechRecognitionResult) {
+    print("Transcripts in order of decreasing confidence for language", Constant.Identifier.locale)
+    for transcription in result.transcriptions {
+      print(transcription.formattedString)
+    }
+  }
+
+  private func enqueueSegments(from result: SFSpeechRecognitionResult) {
+    guard result.speechRecognitionMetadata == nil else {
+      return
+    }
+    guard result.transcriptions.count == 1, let transcription = result.transcriptions.first else {
+      setState(.error(Error.transcriptionFailed))
+      return
+    }
+    guard let segment = transcription.segments.last else {
+      setState(.error(Error.lastSegmentFailed))
+      return
+    }
+    segmentsQueue.enqueue(segment)
+  }
+
   private func handleError(_ error: Swift.Error, delay: DispatchTimeInterval = DispatchTimeInterval.seconds(2)) {
     if case .stopping = state {
       return
@@ -120,48 +154,36 @@ final class RecognitionManager: ObservableObject {
     }
   }
 
-  /// Starts a new recognition task.
-  /// - Throws: `Error.recognitionTaskFailure(error:)` if there was a problem starting the recognition task.
-  ///           `Error.unexpectedRecognitionResult` if an unexpected or invalid recognition result is received.
-  ///           `Error.transcriptionFailed` if the transcription of the speech fails.
-  ///           `Error.lastSegmentFailed` if there is no last segment in the current transcription.
-  /// The method also handles any errors that occur during recognition by calling `handleRecognitionError(_:)`.
-  private func startRecognitionTask() {
-    guard let recognitionRequest = recognitionRequest else {
+  private func recognize() {
+    guard let recognitionRequest else {
       setState(.error(Error.audioBufferFailed))
       return
     }
     speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
-      guard let self = self else { return }
-      if let error = error {
+      guard let self else { return }
+
+      if let error {
         self.setState(.error(Error.recognitionTaskFailure(error: error)))
         return
       }
 
-      guard let result = result else {
+      guard let result else {
         self.setState(.error(Error.unexpectedRecognitionResult))
         return
       }
 
-      guard result.speechRecognitionMetadata == nil else {
-        return
-      }
+      delegate?.recognitionManagerDidRestartSuccessfully(self)
 
-      guard result.transcriptions.count == 1, let transcription = result.transcriptions.first else {
-        self.setState(.error(Error.transcriptionFailed))
-        return
+      switch operatingMode {
+      case .learning:
+        displayTranscriptions(from: result)
+      case .normal:
+        enqueueSegments(from: result)
       }
-
-      guard let segment = transcription.segments.last else {
-        self.setState(.error(Error.lastSegmentFailed))
-        return
-      }
-
-      segmentsQueue.enqueue(segment)
     }
   }
 
-  // MARK: - Public Methods
+  // MARK: - Core Functions
 
   /// Starts and process the speech recognition process.
   /// - Throws: `Error.partialRecognitionNotReported` if the recognition request does not support reporting partial results.
@@ -177,16 +199,13 @@ final class RecognitionManager: ObservableObject {
         setState(.error(Error.recognitionRequestCreationFailed))
         return
       }
-      recognitionRequest.requiresOnDeviceRecognition = true
-      guard recognitionRequest.shouldReportPartialResults else {
-        setState(.error(Error.partialRecognitionNotReported))
-        return
-      }
+      recognitionRequest.requiresOnDeviceRecognition = (operatingMode != .normal)
+      recognitionRequest.shouldReportPartialResults = (operatingMode == .normal)
       guard speechRecognizer.isAvailable else {
         setState(.error(Error.speechRecognizerNotAvailable))
         return
       }
-      startRecognitionTask()
+      recognize()
       try audioManager.listen()
       setState(.listening)
     } catch {
@@ -209,11 +228,16 @@ final class RecognitionManager: ObservableObject {
   }
 }
 
+// MARK: - AudioManagerDelegate
+
+/// Extension of RecognitionManager to comply with AudioManagerDelegate protocol.
+/// This extension allows RecognitionManager to handle audio buffer updates.
 extension RecognitionManager: AudioManagerDelegate {
 
   /// Handles the receipt of an audio buffer from the audio manager.
   ///
-  /// This method is called by the `AudioManager` when it has new audio buffer data. The audio data is appended to the current `SFSpeechAudioBufferRecognitionRequest` to continue the speech recognition process.
+  /// This method is called by the `AudioManager` when it has new audio buffer data. The audio data is appended
+  /// to the current `SFSpeechAudioBufferRecognitionRequest` to continue the speech recognition process.
   ///
   /// - Parameter buffer: The `AVAudioPCMBuffer` object containing the new audio data.
   func audioManager(_ audioManager: AudioManager, didUpdate buffer: AVAudioPCMBuffer) {
