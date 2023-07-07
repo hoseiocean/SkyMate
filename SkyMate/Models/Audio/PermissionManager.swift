@@ -11,65 +11,51 @@ final class PermissionManager {
 
   // MARK: - Properties
 
-  /// Indicates whether audio source permission is granted.
-  var hasAudioSource: Bool {
+  private var hasAudioSource: Bool {
     AVAudioSession.sharedInstance().recordPermission == .granted
   }
 
-  /// Indicates whether speech recognition permission is granted.
-  var hasSpeechRecognitionPermission: Bool {
+  private var hasSpeechRecognitionPermission: Bool {
     SFSpeechRecognizer.authorizationStatus() == .authorized
+  }
+
+  // MARK: - Private Methods
+
+  private func requestSpeechRecognitionPermission() async -> Bool {
+    await withCheckedContinuation { continuation in
+      SFSpeechRecognizer.requestAuthorization { status in
+        continuation.resume(returning: status == .authorized)
+      }
+    }
+  }
+
+  private func requestAudioPermission() async -> Bool {
+    return await withCheckedContinuation { continuation in
+      AVAudioSession.sharedInstance().requestRecordPermission { granted in
+        continuation.resume(returning: granted)
+      }
+    }
   }
 
   // MARK: - Public Methods
 
+  /// Requests all necessary permissions (audio and speech recognition).
   ///
+  /// This function is used to request all necessary permissions for audio recording and speech recognition.
   ///
-  func requestAllPermissions(completion: @escaping (Bool) -> Void) {
-    let group = DispatchGroup()
-
+  /// - Parameter completion: A closure to be called with a boolean parameter indicating whether all permissions were granted.
+  func requestAllPermissions() async -> Bool {
     var hasAudioPermission = hasAudioSource
     var hasSpeechPermission = hasSpeechRecognitionPermission
 
     if !hasAudioPermission {
-      group.enter()
-      requestAudioPermission { granted in
-        hasAudioPermission = granted
-        group.leave()
-      }
+      hasAudioPermission = await requestAudioPermission()
     }
 
     if !hasSpeechPermission {
-      group.enter()
-      requestSpeechRecognitionPermission { granted in
-        hasSpeechPermission = granted
-        group.leave()
-      }
+      hasSpeechPermission = await requestSpeechRecognitionPermission()
     }
 
-    group.notify(queue: .main) {
-      completion(hasAudioPermission && hasSpeechPermission)
-    }
+    return hasAudioPermission && hasSpeechPermission
   }
-
-  /// Requests speech recognition permission.
-  /// - Parameter completion: A closure to be called with the authorization status as a parameter.
-  func requestSpeechRecognitionPermission(completion: @escaping (Bool) -> Void) {
-    SFSpeechRecognizer.requestAuthorization { status in
-      DispatchQueue.main.async {
-        completion(status == .authorized)
-      }
-    }
-  }
-
-  /// Requests audio permission.
-  /// - Parameter completion: A closure to be called with the permission status as a parameter.
-  func requestAudioPermission(completion: @escaping (Bool) -> Void) {
-    AVAudioSession.sharedInstance().requestRecordPermission { granted in
-      DispatchQueue.main.async {
-        completion(granted)
-      }
-    }
-  }
-
 }
