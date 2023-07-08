@@ -15,6 +15,13 @@ protocol AudioManagerDelegate: AnyObject {
   ///   - audioManager: The `AudioManager` that is sending the buffer.
   ///   - buffer: The new audio buffer.
   func audioManager(_ audioManager: AudioManager, didUpdate buffer: AVAudioPCMBuffer) async
+
+  /// This method is called whenever the `AudioManager` encounters an error.
+  ///
+  /// - Parameters:
+  ///   - audioManager: The `AudioManager` that is sending the buffer.
+  ///   - didEncounterError: The error encountered.
+  func audioManager(_ audioManager: AudioManager, didEncounterError error: Swift.Error)
 }
 
 final class AudioManager {
@@ -61,7 +68,7 @@ final class AudioManager {
   ///
   /// - Throws: `Error.audioSessionFailed` if there is an issue with setting up the audio session,
   ///           `Error.audioEngineStartingFailed` if there is an issue starting the audio engine.
-  func listen() async throws {
+  func listen() async {
     guard !isListening else { return }
 
     let audioSession = AVAudioSession.sharedInstance()
@@ -69,7 +76,7 @@ final class AudioManager {
       try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
       try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
     } catch {
-      throw Error.audioSessionFailed(error: error)
+      delegate?.audioManager(self, didEncounterError: Error.audioSessionFailed(error: error))
     }
 
     let audioFormat = audioEngine.inputNode.outputFormat(forBus: Configuration.audioBus)
@@ -93,7 +100,7 @@ final class AudioManager {
     do {
       try audioEngine.start()
     } catch {
-      throw Error.audioEngineStartingFailed(error: error)
+      delegate?.audioManager(self, didEncounterError: Error.audioEngineStartingFailed(error: error))
     }
   }
 
