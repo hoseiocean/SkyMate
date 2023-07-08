@@ -9,19 +9,19 @@ import AVFAudio
 
 /// The `AudioManagerDelegate` protocol defines methods that an object may implement to receive audio buffer updates from an `AudioManager`.
 protocol AudioManagerDelegate: AnyObject {
+  /// This method is called whenever the `AudioManager` encounters an error.
+  ///
+  /// - Parameters:
+  ///   - audioManager: The `AudioManager` that is sending the buffer.
+  ///   - error: The error encountered.
+  func audioManager(_ audioManager: AudioManager, didEncounterError error: Swift.Error)
+
   /// This method is called whenever the `AudioManager` receives a new audio buffer.
   ///
   /// - Parameters:
   ///   - audioManager: The `AudioManager` that is sending the buffer.
   ///   - buffer: The new audio buffer.
   func audioManager(_ audioManager: AudioManager, didUpdate buffer: AVAudioPCMBuffer) async
-
-  /// This method is called whenever the `AudioManager` encounters an error.
-  ///
-  /// - Parameters:
-  ///   - audioManager: The `AudioManager` that is sending the buffer.
-  ///   - didEncounterError: The error encountered.
-  func audioManager(_ audioManager: AudioManager, didEncounterError error: Swift.Error)
 }
 
 final class AudioManager {
