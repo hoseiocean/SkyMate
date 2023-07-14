@@ -6,8 +6,22 @@
   
 */
 
+"ButtonText_languageFlag" = "🇫🇷";
 "ButtonText_listening" = "En écoute";
-"ButtonText_selectLanguage" = "Sélection de la langue";
+"ButtonText_off" = "Eteint";
+"ButtonText_offline" = "Déconnecté";
+"ButtonText_online" = "Connecté";
 
-"ScreenText_command" = "A Command";
-"ScreenText_defaultMessage" = "Waiting for order";
+
+"CardText_defaultContent" = "En attente d’ordre";
+"CardText_defaultTitle" = "Dites « Commandes ! »";
+"CardText_resourceLoadingFailedContent" = "Désolé, une erreur est survenue lors du chargement des ressources nécessaires à la reconnaissance vocale. Veuillez redémarrer l'application. Si le problème persiste, contactez le support technique.";
+"CardText_resourceLoadingFailedTitle" = "Chargement des ressources échoué";
+
+"Error_speechRecognitionFailedToStart" = "La reconnaissance vocale n’a pas pu démarrer.";
+"Error_speechRecognitionNotAvailable" = "La reconnaissance vocale n’est pas disponible pour votre langue.";
+
+"MenuText_selectLanguage" = "Sélection de la langue";
+"MenuText_english" = "Anglais";
+"MenuText_french" = "Français";
+"MenuText_spanish" = "Espagnol";

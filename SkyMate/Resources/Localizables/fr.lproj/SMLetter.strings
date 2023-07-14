@@ -1,0 +1,182 @@
+/* 
+  Letters.strings
+  SkyMate
+
+  Created by Thomas Heinis on 04/07/2023.
+  
+*/
+
+// MARK: - alfa
+
+"alfa" = "alfa";
+"Alpha" = "alfa";
+"Alphas" = "alfa";
+"Haifa" = "alfa";
+"iPhone" = "alfa";
+"Aïssa" = "alfa";
+
+// MARK: - bravo
+
+"bravo" = "bravo";
+
+// MARK: - charlie
+
+"charlie" = "charlie";
+"Charly" = "charlie";
+"Charli" = "charlie";
+"Shirley" = "charlie";
+
+// MARK: - delta
+
+"delta" = "delta";
+"Deltas" = "delta";
+
+// MARK: - echo
+
+"echo" = "echo";
+"Éco" = "echo";
+"Hayko" = "echo";
+"Ico" = "echo";
+"Iko" = "echo";
+"ICO" = "echo";
+"Echos" = "echo";
+"Hiko" = "echo";
+
+// MARK: - foxtrot
+
+"foxtrot" = "foxtrot";
+"Fox-trot" = "foxtrot";
+"Fox trotte" = "foxtrot";
+"Fox 30" = "foxtrot";
+"Faut que 30" = "foxtrot";
+"Fawkes 30" = "foxtrot";
+"Faut que je 30" = "foxtrot";
+"Faut que je rente" = "foxtrot";
+"Faut que je rote" = "foxtrot";
+
+// MARK: - golf
+
+"golf" = "golf";
+
+// MARK: - hotel
+
+"hotel" = "hotel";
+"Hôtels" = "hotel";
+"Autel" = "hotel";
+
+// MARK: - india
+
+"india" = "india";
+
+// MARK: - juliett
+
+"juliett" = "juliett";
+"Juliette" = "juliett";
+"Juliet" = "juliett";
+"De Juliette" = "juliett";
+
+// MARK: - kilo
+
+"kilo" = "kilo";
+"Kilos" = "kilo";
+"Kg" = "kilo";
+"Kilou" = "kilo";
+"Kilot" = "kilo";
+"Kylo" = "kilo";
+"Qui loue" = "kilo";
+
+// MARK: - lima
+
+"lima" = "lima";
+"Hymne" = "lima";
+"Lis ma" = "lima";
+"Limas" = "lima";
+
+// MARK: - mike
+
+"mike" = "mike";
+"Mic" = "mike";
+
+// MARK: - november
+
+"november" = "november";
+"Novembre" = "november";
+
+// MARK: - oscar
+
+"oscar" = "oscar";
+"Oscars" = "oscar";
+"Oskar" = "oscar";
+
+// MARK: - papa
+
+"papa" = "papa";
+
+// MARK: - quebec
+
+"quebec" = "quebec";
+
+// MARK: - romeo
+
+"romeo" = "romeo";
+
+// MARK: - sierra
+
+"sierra" = "sierra";
+"Sira" = "sierra";
+
+// MARK: - tango
+
+"tango" = "tango";
+"Ton goût" = "tango";
+"Tongo" = "tango";
+"Tangos" = "tango";
+
+// MARK: - uniform
+
+"uniform" = "uniform";
+"Uniforme" = "uniform";
+"Uniformes" = "uniform";
+
+// MARK: - victor
+
+"victor" = "victor";
+"Viktor" = "victor";
+
+// MARK: - whiskey
+
+"whiskey" = "whiskey";
+"Whisky" = "whiskey";
+"Miskine" = "whiskey";
+"Mystique" = "whiskey";
+"Mystic" = "whiskey";
+"Misty" = "whiskey";
+"Miss K8" = "whiskey";
+
+// MARK: - xray
+
+"xray" = "xray";
+"Il serait" = "xray";
+"Ils seraient" = "xray";
+
+// MARK: - yankee
+
+"yankee" = "yankee";
+"Gentil" = "yankee";
+"Gentils" = "yankee";
+"Lis anti" = "yankee";
+"Jean Petit" = "yankee";
+"J'ai un petit" = "yankee";
+"Y'a un petit" = "yankee";
+"Il y a un petit" = "yankee";
+"IAM Petit" = "yankee";
+"Y'a mon petit" = "yankee";
+
+// MARK: - zulu
+
+"zulu" = "zulu";
+"Zoulou" = "zulu";
+"The Law" = "zulu";
+"The Low" = "zulu";
+"Joue Loup" = "zulu";
+"Zoulous" = "zulu";

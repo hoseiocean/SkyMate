@@ -6,8 +6,21 @@
   
 */
 
+"ButtonText_languageFlag" = "🇪🇸";
 "ButtonText_listening" = "Escuchando";
-"ButtonText_selectLanguage" = "Seleccionar idioma";
+"ButtonText_off" = "Fuera";
+"ButtonText_offline" = "Desconectado";
+"ButtonText_online" = "Conectado";
 
-"ScreenText_command" = "A Command";
-"ScreenText_defaultMessage" = "Waiting for order";
+"CardText_defaultContent" = "Esperando pedido";
+"CardText_defaultTitle" = "Di « ¡Solicita! »";
+"CardText_resourceLoadingFailedContent" = "Lo sentimos, se ha producido un error al cargar los recursos necesarios para el reconocimiento de voz. Por favor, reinicie la aplicación. Si el problema persiste, póngase en contacto con el servicio de asistencia técnica.";
+"CardText_resourceLoadingFailedTitle" = "Fallo en la carga de recursos";
+
+"ErrorText_speechRecognitionFailedToStart" = "No se pudo iniciar el reconocimientode voz.";
+"ErrorText_speechRecognitionNotAvailable" = "El reconocimiento de voz no está disponible para su idioma.";
+
+"MenuText_selectLanguage" = "Seleccionar idioma";
+"MenuText_english" = "Inglés";
+"MenuText_french" = "Francés";
+"MenuText_spanish" = "Español";

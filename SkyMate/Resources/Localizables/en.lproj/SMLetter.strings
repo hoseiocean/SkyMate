@@ -1,0 +1,111 @@
+/* 
+  Letters.strings
+  SkyMate
+
+  Created by Thomas Heinis on 04/07/2023.
+  
+*/
+
+// MARK: - alfa
+
+"alfa" = "alfa";
+
+// MARK: - bravo
+
+"bravo" = "bravo";
+
+// MARK: - charlie
+
+"charlie" = "charlie";
+
+// MARK: - delta
+
+"delta" = "delta";
+
+// MARK: - echo
+
+"echo" = "echo";
+
+// MARK: - foxtrot
+
+"foxtrot" = "foxtrot";
+
+// MARK: - golf
+
+"golf" = "golf";
+
+// MARK: - hotel
+
+"hotel" = "hotel";
+
+// MARK: - india
+
+"india" = "india";
+
+// MARK: - juliett
+
+"juliett" = "juliett";
+
+// MARK: - kilo
+
+"kilo" = "kilo";
+
+// MARK: - lima
+
+"lima" = "lima";
+
+// MARK: - mike
+
+"mike" = "mike";
+
+// MARK: - november
+
+"november" = "november";
+
+// MARK: - oscar
+
+"oscar" = "oscar";
+
+// MARK: - papa
+
+"papa" = "papa";
+
+// MARK: - quebec
+
+"quebec" = "quebec";
+
+// MARK: - romeo
+
+"romeo" = "romeo";
+
+// MARK: - sierra
+
+"sierra" = "sierra";
+
+// MARK: - tango
+
+"tango" = "tango";
+
+// MARK: - uniform
+
+"uniform" = "uniform";
+
+// MARK: - victor
+
+"victor" = "victor";
+
+// MARK: - whiskey
+
+"whiskey" = "whiskey";
+
+// MARK: - xray
+
+"xray" = "xray";
+
+// MARK: - yankee
+
+"yankee" = "yankee";
+
+// MARK: - zulu
+
+"zulu" = "zulu";

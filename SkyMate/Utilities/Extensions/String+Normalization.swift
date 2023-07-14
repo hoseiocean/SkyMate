@@ -18,7 +18,7 @@ extension String {
     self
       .folding(options: .diacriticInsensitive, locale: .current)
       .lowercased()
-      .replacingOccurrences(of: Constant.Character.space, with: Constant.Character.nothing)
+      .replacingOccurrences(of: Const.Char.space, with: Const.Char.none)
       .trimmingCharacters(in: .whitespacesAndNewlines)
   }
   

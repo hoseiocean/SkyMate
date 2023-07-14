@@ -1,0 +1,64 @@
+/* 
+  Commands.strings
+  SkyMate
+
+  Created by Thomas Heinis on 16/06/2023.
+  
+*/
+
+// MARK: - command
+
+"Command" = "command";
+
+// MARK: - destination
+
+"Destination" = "destination";
+"Destinations" = "destination";
+
+// MARK: - metar
+
+"Matata" = "metar";
+"Mattia" = "metar";
+"Matter" = "metar";
+"Mature" = "metar";
+"Meda" = "metar";
+"Meta-" = "metar";
+"Metal" = "metar";
+"Meter" = "metar";
+"Meters" = "metar";
+"Met her" = "metar";
+"Middle" = "metar";
+"Mika" = "metar";
+"Mitchell" = "metar";
+"Mr." = "metar";
+"Samita" = "metar";
+"Zamita" = "metar";
+
+// MARK: - microphone
+
+"micro" = "microphone";
+"microphone" = "microphone";
+"microphones" = "microphone";
+"mike" = "microphone";
+
+// MARK: - night
+
+"Nate" = "night";
+"Night" = "night";
+
+// MARK: - NOTAM
+
+"Do dumb" = "notam";
+"Do time" = "notam";
+"Madame" = "notam";
+"Nathan" = "notam";
+"Newton" = "notam";
+"New dumb" = "notam";
+"New time" = "notam";
+"No dumb" = "notam";
+"No time" = "notam";
+"Norton" = "notam";
+"Not done" = "notam";
+"Not him" = "notam";
+"Not them" = "notam";
+"Nothing" = "notam";

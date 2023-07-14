@@ -6,8 +6,21 @@
   
 */
 
+"ButtonText_languageFlag" = "🇺🇸";
 "ButtonText_listening" = "Listening";
-"ButtonText_selectLanguage" = "Select language";
+"ButtonText_off" = "Off";
+"ButtonText_offline" = "Offline";
+"ButtonText_online" = "Online";
 
-"ScreenText_command" = "A Command";
-"ScreenText_defaultMessage" = "Waiting for order";
+"CardText_defaultContent" = "Waiting for order";
+"CardText_defaultTitle" = "Say “Request!”";
+"CardText_resourceLoadingFailedContent" = "Sorry, an error has occurred while loading the resources required for speech recognition. Please restart the application. If the problem persists, please contact technical support.";
+"CardText_resourceLoadingFailedTitle" = "Resource loading failed";
+
+"ErrorText_speechRecognitionFailedToStart" = "Recognition failed to start";
+"ErrorText_speechRecognitionNotAvailable" = "Speech recognition is not available for your language.";
+
+"MenuText_selectLanguage" = "Select language";
+"MenuText_english" = "English";
+"MenuText_french" = "French";
+"MenuText_spanish" = "Spanish";
