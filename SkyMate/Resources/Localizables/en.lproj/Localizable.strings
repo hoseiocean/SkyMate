@@ -20,7 +20,8 @@
 "ErrorText_speechRecognitionFailedToStart" = "Recognition failed to start";
 "ErrorText_speechRecognitionNotAvailable" = "Speech recognition is not available for your language.";
 
-"MenuText_selectLanguage" = "Select language";
+"MenuText_cancel" = "Cancel";
 "MenuText_english" = "English";
 "MenuText_french" = "French";
 "MenuText_spanish" = "Spanish";
+"MenuText_selectLanguage" = "Select language";

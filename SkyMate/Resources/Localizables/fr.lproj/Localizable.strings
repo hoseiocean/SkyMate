@@ -21,7 +21,8 @@
 "Error_speechRecognitionFailedToStart" = "La reconnaissance vocale n’a pas pu démarrer.";
 "Error_speechRecognitionNotAvailable" = "La reconnaissance vocale n’est pas disponible pour votre langue.";
 
-"MenuText_selectLanguage" = "Sélection de la langue";
+"MenuText_cancel" = "Annuler";
 "MenuText_english" = "Anglais";
 "MenuText_french" = "Français";
 "MenuText_spanish" = "Espagnol";
+"MenuText_selectLanguage" = "Sélection de la langue";
