@@ -29,9 +29,9 @@ struct Const {
     }
 
     enum Name {
-      static let answers = "SMAnswer"
-      static let command = "SMCommand"
-      static let letters = "SMLetter"
+      static let answers = "Answers"
+      static let command = "Commands"
+      static let letters = "Letters"
     }
   }
 
@@ -42,6 +42,10 @@ struct Const {
   enum Label {
     static let networkStatusQueue = "NetworkStatusMonitor"
     static let queueLock = "QueueLock"
+  }
+
+  enum Name {
+    static let languageDidChange = "LanguageDidChange"
   }
 
   enum Symbol {

@@ -16,8 +16,6 @@ enum ButtonText: String, Localizable {
 enum CardText: String, Localizable {
   case defaultContent
   case defaultTitle
-  case resourceLoadingFailedContent
-  case resourceLoadingFailedTitle
 }
 
 enum MenuText: String, Localizable {
@@ -26,4 +24,9 @@ enum MenuText: String, Localizable {
   case french
   case selectLanguage
   case spanish
+}
+
+enum RecognitionProviderText: String, Localizable {
+  case missingDictionariesContent
+  case missingDictionariesTitle
 }

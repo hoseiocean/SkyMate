@@ -1,0 +1,17 @@
+/* 
+  SMAnswer.strings
+  SkyMate
+
+  Created by Thomas Heinis on 15/07/2023.
+  
+*/
+
+
+// MARK: - cancel
+
+"Cancel" = "cancel";
+"Cancelar" = "cancel";
+
+// MARK: - ok
+
+"OK" = "ok";

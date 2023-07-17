@@ -14,14 +14,15 @@
 
 "CardText_defaultContent" = "Waiting for order";
 "CardText_defaultTitle" = "Say “Request!”";
-"CardText_resourceLoadingFailedContent" = "Sorry, an error has occurred while loading the resources required for speech recognition. Please restart the application. If the problem persists, please contact technical support.";
-"CardText_resourceLoadingFailedTitle" = "Resource loading failed";
-
-"ErrorText_speechRecognitionFailedToStart" = "Recognition failed to start";
-"ErrorText_speechRecognitionNotAvailable" = "Speech recognition is not available for your language.";
 
 "MenuText_cancel" = "Cancel";
 "MenuText_english" = "English";
 "MenuText_french" = "French";
-"MenuText_spanish" = "Spanish";
 "MenuText_selectLanguage" = "Select language";
+"MenuText_spanish" = "Spanish";
+
+"RecognitionProviderText_english" = "English";
+"RecognitionProviderText_french" = "French";
+"RecognitionProviderText_missingDictionariesContent" = "We have processed %@ language, but voice recognition cannot work due to missing dictionaries. Please try another language. If the problem persists, contact our support.";
+"RecognitionProviderText_missingDictionariesTitle" = "Unable to load dictionaries";
+"RecognitionProviderText_spanish" = "Spanish";

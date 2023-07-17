@@ -15,14 +15,15 @@
 
 "CardText_defaultContent" = "En attente d’ordre";
 "CardText_defaultTitle" = "Dites « Commandes ! »";
-"CardText_resourceLoadingFailedContent" = "Désolé, une erreur est survenue lors du chargement des ressources nécessaires à la reconnaissance vocale. Veuillez redémarrer l'application. Si le problème persiste, contactez le support technique.";
-"CardText_resourceLoadingFailedTitle" = "Chargement des ressources échoué";
-
-"Error_speechRecognitionFailedToStart" = "La reconnaissance vocale n’a pas pu démarrer.";
-"Error_speechRecognitionNotAvailable" = "La reconnaissance vocale n’est pas disponible pour votre langue.";
 
 "MenuText_cancel" = "Annuler";
 "MenuText_english" = "Anglais";
 "MenuText_french" = "Français";
-"MenuText_spanish" = "Espagnol";
 "MenuText_selectLanguage" = "Sélection de la langue";
+"MenuText_spanish" = "Espagnol";
+
+"RecognitionProviderText_english" = "Anglais";
+"RecognitionProviderText_french" = "Français";
+"RecognitionProviderText_missingDictionariesContent" = "%@ : la langue a été traitée, mais la reconnaissance vocale ne peut fonctionner car les dictionnaires sont absents. Veuillez essayer une autre langue. Si le problème persiste, contactez notre service d’assistance.";
+"RecognitionProviderText_missingDictionariesTitle" = "Les dictionnaires sont absents";
+"RecognitionProviderText_spanish" = "Espagnol";

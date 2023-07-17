@@ -31,7 +31,7 @@ extension Localizable where Self: RawRepresentable, Self.RawValue == String {
     let stringEnum = String(describing: Self.self)
     let underscore = Const.Char.underscore
     let stringCase = self.rawValue
-    // Strings are given specific names to make them easier to store and find.
+    // Strings are given specific keys to make them easier to store and find.
     let stringKey = stringEnum + underscore + stringCase
     let localizedString = LanguageManager.shared.localizedString(forKey: stringKey, in: currentLanguage)
     return localizedString ?? self.rawValue
