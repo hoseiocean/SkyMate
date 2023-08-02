@@ -26,9 +26,18 @@ protocol AudioManagerDelegate: AnyObject {
   func audioManager(_ audioManager: AudioManager, didUpdate buffer: AVAudioPCMBuffer) async
 }
 
+/// `AudioManagerError` is an enumeration of the different errors that can occur during the
+/// lifecycle of the `AudioManager`.
+///
+/// - `audioEngineStartingFailed`: This error occurs when the audio engine fails to start. It
+/// provides an underlying `Error` object that can give more information about the problem.
+///
+/// - `audioSessionFailed`: This error occurs when there is a problem setting up the audio session.
+/// It also provides an underlying `Error` object that can give more information about the
+/// problem.
 enum AudioManagerError: Error {
-  case audioEngineStartingFailed(error: Swift.Error)
-  case audioSessionFailed(error: Swift.Error)
+  case audioEngineStartingFailed(error: Error)
+  case audioSessionFailed(error: Error)
 }
 
 final class AudioManager {
@@ -66,17 +75,29 @@ final class AudioManager {
   func listen() async {
     guard !isListening else { return }
 
+    // Before starting to listen, we ensure that any previously running audio engine or active tap
+    // is stopped and cleaned. This is necessary to prevent any conflicts or issues with the audio
+    // engine when starting a new session. Also, this helps with managing resources as any
+    // lingering taps or audio engines from previous sessions are appropriately cleaned up.
+    stopAndClean()
+
+    // Here, we initiate the audio session and set its properties. An audio session is a singleton
+    // object that is used to set the audio context for the app and to express to the operating
+    // system how we intend to use audio session.
     let audioSession = AVAudioSession.sharedInstance()
     do {
-      try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
       try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+      try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
     } catch {
       delegate?.audioManager(self, didEncounterError: AudioManagerError.audioSessionFailed(error: error))
     }
 
-    let audioFormat = audioEngine.inputNode.outputFormat(forBus: Configuration.audioBus)
-
+    // This block of code sets up an audio tap on the input node of the audio engine. A tap allows
+    // us to intercept the audio data from the input node and process it before it gets to the
+    // output. Here, we’re sending the audio data to our delegate via the
+    // `audioManager(_:didUpdate:)` method.
     if !isTapping {
+      let audioFormat = audioEngine.inputNode.outputFormat(forBus: Configuration.audioBus)
       audioEngine.inputNode.installTap(
         onBus: Configuration.audioBus,
         bufferSize: Configuration.bufferSize,
@@ -93,7 +114,6 @@ final class AudioManager {
     }
 
     audioEngine.prepare()
-
     do {
       try audioEngine.start()
     } catch {

@@ -6,15 +6,25 @@
   
 */
 
+"AirportText_content" = "Aéroports et aérodromes disponibles prochainement";
+"AirportText_title" = "Aéroports et aérodromes";
+
 "ButtonText_languageFlag" = "🇫🇷";
 "ButtonText_listening" = "En écoute";
 "ButtonText_off" = "Eteint";
 "ButtonText_offline" = "Déconnecté";
 "ButtonText_online" = "Connecté";
 
-
-"CardText_defaultContent" = "En attente d’ordre";
-"CardText_defaultTitle" = "Dites « Commandes ! »";
+"CommandText_content" = "
+Commandes vocales :
+- Aéroports (et aérodromes)
+- METAR
+- Micro(phone)
+- NOTAM
+- Nuit (nautique)
+et aussi les langues anglais et espagnol
+";
+"CommandText_title" = "Les commandes disponibles";
 
 "MenuText_cancel" = "Annuler";
 "MenuText_english" = "Anglais";
@@ -22,8 +32,21 @@
 "MenuText_selectLanguage" = "Sélection de la langue";
 "MenuText_spanish" = "Espagnol";
 
+"MetarText_title" = "METAR";
+
+"MicrophoneText_content" = "Bye bye";
+"MicrophoneText_title" = "Micro coupé.";
+
+"NotamText_content" = "NOTAM bientôt disponible";
+"NotamText_title" = "NOTAM";
+
+"NightText_remaining" = " restantes";
+"NightText_title" = "Nuit nautique";
+
 "RecognitionProviderText_english" = "Anglais";
 "RecognitionProviderText_french" = "Français";
+"RecognitionProviderText_instructionManualContent" = "En attente d’ordre";
+"RecognitionProviderText_instructionManualTitle" = "Dites « Commandes ! »";
 "RecognitionProviderText_missingDictionariesContent" = "%@ : la langue a été traitée, mais la reconnaissance vocale ne peut fonctionner car les dictionnaires sont absents. Veuillez essayer une autre langue. Si le problème persiste, contactez notre service d’assistance.";
 "RecognitionProviderText_missingDictionariesTitle" = "Les dictionnaires sont absents";
 "RecognitionProviderText_spanish" = "Espagnol";

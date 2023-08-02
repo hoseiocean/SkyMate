@@ -17,9 +17,16 @@ struct Const {
 
   enum Color {
     static let background = "Background"
-    static let buttonIcon = "Button Icon"
-    static let buttonBackGround = "Button Background"
+    static let buttonIcon = "Button’s icon"
+    static let buttonBackGround = "Button’s background"
+    static let cardBackground = "Card’s background"
+    static let cardText = "Card’s text"
+    static let backgroundWhenRequestSuccessfullyExecuted = "Found term’s background"
+    static let foregroundWhenRequestSuccesfullyExecuted = "Found term’s text"
     static let shadow = "Shadow"
+    static let titleBackground = "Title’s background"
+    static let titleText = "Title’s text"
+    static let toggleButton = "Toggle’s button"
   }
 
   enum File {
@@ -35,16 +42,27 @@ struct Const {
     }
   }
 
+  enum Id {
+    static let defaut = "default"
+    static let utc = "UTC"
+  }
+
   enum Key {
     static let appLanguage = "appLanguage"
   }
 
   enum Label {
+    static let bufferProcessingQueue = "BufferProcessingQueue"
+    static let cacheQueue = "CacheQueue"
+    static let changingLanguageQueue = "ChangingLanguageQueue"
+    static let localizedStringQueue = "LocalizedStringQueue"
     static let networkStatusQueue = "NetworkStatusMonitor"
     static let queueLock = "QueueLock"
   }
 
   enum Name {
+    static let didFoundTerm = "termFounded"
+    static let didProcessedTranscription = "newTranscriptionProcessed"
     static let languageDidChange = "LanguageDidChange"
   }
 

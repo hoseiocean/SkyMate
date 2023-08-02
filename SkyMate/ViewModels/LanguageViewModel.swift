@@ -10,7 +10,7 @@ import Foundation
 
 /// `LanguageViewModel` is an observable object that provides a bridge between the user interface
 /// and the underlying language data management provided by the `LanguageManager`.
-class LanguageViewModel: ObservableObject {
+final class LanguageViewModel: ObservableObject {
 
   // MARK: - Private properties
 

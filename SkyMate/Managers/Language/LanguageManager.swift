@@ -12,9 +12,21 @@ import Foundation
 final class LanguageManager {
   
   // MARK: - Properties
-  
+
+  // cacheQueue is used to perform cache-related operations in a thread-safe manner.
+  // Operations that mutate the cache are wrapped in this queue to prevent data races.
+  private let cacheQueue = DispatchQueue(label: Const.Label.cacheQueue, qos: .userInitiated)
+
+  // changingLanguageQueue is used to ensure that language changing operations are thread-safe.
+  private let changingLanguageQueue = DispatchQueue(label: Const.Label.changingLanguageQueue, qos: .userInitiated)
+
+  // localizedStringQueue is used to safely fetch localized strings. By wrapping the fetching
+  // operation in this queue, we make sure that multiple threads can concurrently fetch different
+  // strings without running into race conditions.
+  private let localizedStringQueue = DispatchQueue(label: Const.Label.localizedStringQueue, qos: .userInitiated)
+
   private let userSettings = UserDefaults.standard
-  
+
   private var cachedStrings: [String: String] = [:]
   private var cachedStringsBundle: Bundle?
   
@@ -35,12 +47,12 @@ final class LanguageManager {
   }
   
   // MARK: - Cache Management
-  
+
   private func clearCache() {
     cachedStrings.removeAll()
     cachedStringsBundle = nil
   }
-  
+
   // MARK: - Language Management
 
   /// This function returns the language bundle associated with the specified language.
@@ -54,25 +66,30 @@ final class LanguageManager {
   ///   Note that the returned Bundle object only contains the localized strings for the specified
   ///   language. It does not contain any classes, protocols, or other runtime information.
   func languageBundle(for language: SupportedLanguage) -> Bundle? {
-    // Don’t waste time if we already have the requested bundle of Strings!
-    if let cachedStringsBundle {
-      return cachedStringsBundle
+
+    // Using cacheQueue to ensure thread safety while accessing the cached bundle.
+    cacheQueue.sync {
+      
+      // Don’t waste time if we already have the requested bundle of Strings!
+      if let cachedStringsBundle {
+        return cachedStringsBundle
+      }
+      
+      // Let’s lose some only if we need to load this bundle…
+      let languageFile = language.rawValue
+      let localizedProjectFile = Const.File.Extension.localizedProject
+      
+      guard
+        let bundlePath = Bundle.main.path(forResource: languageFile, ofType: localizedProjectFile),
+        let stringsBundle = Bundle(path: bundlePath)
+      else {
+        return nil
+      }
+      
+      // Next time, the bundle of Strings will already be loaded for this language.
+      cachedStringsBundle = stringsBundle
+      return stringsBundle
     }
-
-    // Let’s lose some only if we need to load this bundle…
-    let languageFile = language.rawValue
-    let localizedProjectFile = Const.File.Extension.localizedProject
-
-    guard
-      let bundlePath = Bundle.main.path(forResource: languageFile, ofType: localizedProjectFile),
-      let stringsBundle = Bundle(path: bundlePath)
-    else {
-      return nil
-    }
-
-    // Next time, the bundle of Strings will already be loaded for this language.
-    cachedStringsBundle = stringsBundle
-    return stringsBundle
   }
 
   /// Returns the localized string for the given key in the specified language.
@@ -83,23 +100,27 @@ final class LanguageManager {
   ///   - language: The language in which the string should be localized.
   /// - Returns: The localized string for the key, or `nil` if the key cannot be
   /// found.
-  func localizedString(forKey stringKey: String, in language: SupportedLanguage) -> String? {
-    // Don’t waste time if we already have the requested Strings!
-    if let cachedString = cachedStrings[stringKey] {
-      return cachedString
+  func localizedString(forKey stringKey: String, inLanguage language: SupportedLanguage) -> String? {
+
+    // Using localizedStringQueue to ensure thread safety while fetching the localized string.
+    localizedStringQueue.sync {
+
+      // Don’t waste time if we already have the requested Strings!
+      if let cachedString = cachedStrings[stringKey] {
+        return cachedString
+      }
+
+      // Let’s lose some only if we need to load these Strings…
+      let languageBundle = languageBundle(for: language) ?? Bundle.main
+      let noComments = Const.Char.none
+      let localizedString = NSLocalizedString(stringKey, bundle: languageBundle, comment: noComments)
+
+      // Next time, the Strings will already be loaded for this language.
+      cachedStrings[stringKey] = localizedString
+      return localizedString
     }
-    
-    // Let’s lose some only if we need to load these Strings…
-    let languageBundle = languageBundle(for: language) ?? Bundle.main
-    let noComments = Const.Char.none
-    let localizedString = NSLocalizedString(stringKey, bundle: languageBundle, comment: noComments)
-
-    // Next time, the Strings will already be loaded for this language.
-    cachedStrings[stringKey] = localizedString
-
-    return localizedString
   }
-  
+
   /// This function changes the language used in the app.
   ///
   /// - Parameter newLanguage: The language to use in the app. This function updates the `currentLanguage`
@@ -111,17 +132,25 @@ final class LanguageManager {
   ///   the strings are loaded from the bundle for the current language, so when the language changes,
   ///   the cached strings are no longer valid.
   func setLanguage(_ newLanguage: SupportedLanguage) {
-    clearCache()
-    previousLanguage = currentLanguage.value
-    currentLanguage.value = newLanguage
-    userSettings.set(newLanguage.rawValue, forKey: Const.Key.appLanguage)
-    NotificationCenter.default.post(name: .languageDidChange, object: nil)
+
+    // Using changingLanguageQueue to ensure thread safety while changing the language.
+    changingLanguageQueue.sync {
+      self.clearCache()
+      self.previousLanguage = self.currentLanguage.value
+      self.currentLanguage.value = newLanguage
+      self.userSettings.set(newLanguage.rawValue, forKey: Const.Key.appLanguage)
+      NotificationCenter.default.post(name: .languageDidChange, object: nil)
+    }
   }
-  
+
   // MARK: - Deinit
 
   /// Cleans up when the instance is deallocated.
   deinit {
-    clearCache()
+
+    // Using cacheQueue to ensure thread safety while clearing the cache.
+    cacheQueue.sync {
+      clearCache()
+    }
   }
 }

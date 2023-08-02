@@ -7,9 +7,8 @@
 
 import Foundation
 
-/// SupportedLanguage is an enumeration of supported languages. Conforms to
-/// the `RawRepresentable` protocol and provides raw string values that match
-/// the ISO 639-1 language codes.
+/// SupportedLanguage is an enumeration of supported languages. Conforms to the `RawRepresentable`
+/// protocol and provides raw string values that match the ISO 639-1 language codes.
 enum SupportedLanguage: String, CaseIterable {
   case english = "en"
   case french = "fr"
@@ -17,8 +16,8 @@ enum SupportedLanguage: String, CaseIterable {
 
   /// Provides the default language.
   ///
-  /// - Returns: The current language of the device if it is supported.
-  /// Otherwise, it returns English as a default language.
+  /// - Returns: The current language of the device if it is supported. Otherwise, it returns
+  /// English as a default language.
   static var defaultLanguage: SupportedLanguage {
     if let appLanguage = UserDefaults.standard.string(forKey: Const.Key.appLanguage),
        let supportedLanguage = SupportedLanguage(rawValue: appLanguage) {
@@ -35,13 +34,12 @@ enum SupportedLanguage: String, CaseIterable {
 
   /// Provides a `Locale` instance corresponding to the supported language.
   ///
-  /// This computed property creates a new `Locale` instance using the raw value
-  /// of the `SupportedLanguage` as the locale identifier. `Locale` instances
-  /// represent cultural preferences that might require specific handling for your
-  /// app’s content.
+  /// This computed property creates a new `Locale` instance using the raw value of the
+  /// `SupportedLanguage` as the locale identifier. `Locale` instances represent cultural
+  /// preferences that might require specific handling for your app’s content.
   ///
-  /// For example, use this property to format a date string or a number in a way
-  /// that conforms to the user’s language and region.
+  /// For example, use this property to format a date string or a number in a way that
+  /// conforms to the user’s language and region.
   ///
   /// - Returns: A `Locale` instance that matches the supported language.
   var locale: Locale {

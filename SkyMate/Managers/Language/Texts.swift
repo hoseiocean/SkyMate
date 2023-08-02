@@ -5,6 +5,11 @@
 //  Created by Thomas Heinis on 13/07/2023.
 //
 
+enum AirportText: String, Localizable {
+  case title
+  case content
+}
+
 enum ButtonText: String, Localizable {
   case languageFlag
   case listening
@@ -13,9 +18,9 @@ enum ButtonText: String, Localizable {
   case online
 }
 
-enum CardText: String, Localizable {
-  case defaultContent
-  case defaultTitle
+enum CommandText: String, Localizable {
+  case title
+  case content
 }
 
 enum MenuText: String, Localizable {
@@ -26,7 +31,35 @@ enum MenuText: String, Localizable {
   case spanish
 }
 
+enum MetarText: String, Localizable {
+  case title
+}
+
+enum MicrophoneText: String, Localizable {
+  case title
+  case content
+}
+
+enum NightText: String, Localizable {
+  case remaining
+  case title
+}
+
+enum NotamText: String, Localizable {
+  case title
+  case content
+}
+
 enum RecognitionProviderText: String, Localizable {
+  case english
+  case failedContent
+  case failedTitle
+  case french
+  case instructionManualContent
+  case instructionManualTitle
   case missingDictionariesContent
   case missingDictionariesTitle
+  case spanish
+  case stoppedContent
+  case stoppedTitle
 }

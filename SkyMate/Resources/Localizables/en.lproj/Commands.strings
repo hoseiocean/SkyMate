@@ -6,14 +6,19 @@
   
 */
 
+// MARK: - airport
+
+"Airfield" = "airport";
+"Airport" = "airport";
+
 // MARK: - command
 
 "Command" = "command";
+"Commands" = "command";
 
-// MARK: - destination
+// MARK: - french
 
-"Destination" = "destination";
-"Destinations" = "destination";
+"french" = "french";
 
 // MARK: - metar
 
@@ -39,7 +44,6 @@
 "micro" = "microphone";
 "microphone" = "microphone";
 "microphones" = "microphone";
-"mike" = "microphone";
 
 // MARK: - night
 
@@ -62,3 +66,7 @@
 "Not him" = "notam";
 "Not them" = "notam";
 "Nothing" = "notam";
+
+// MARK: - spanish
+
+"spanish" = "spanish";

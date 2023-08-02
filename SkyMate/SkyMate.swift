@@ -8,13 +8,21 @@
 import SwiftUI
 
 @main final class SkyMate: App {
-  @ObservedObject private var recognitionProvider = RecognitionProvider()
+
+  @ObservedObject private var recognitionProvider: RecognitionProvider
 
   var body: some Scene {
     WindowGroup {
-      ContentView()
-        .environmentObject(recognitionProvider)
-        .environmentObject(recognitionProvider.recognitionObserver)
+      let contentView = ContentView()
+        .environmentObject(RecognitionProvider.shared)
+      contentView
+    }
+  }
+
+  init() {
+    self.recognitionProvider = RecognitionProvider.shared
+    Task {
+      await self.recognitionProvider.start()
     }
   }
 }

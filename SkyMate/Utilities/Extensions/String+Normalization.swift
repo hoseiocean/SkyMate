@@ -21,5 +21,4 @@ extension String {
       .replacingOccurrences(of: Const.Char.space, with: Const.Char.none)
       .trimmingCharacters(in: .whitespacesAndNewlines)
   }
-  
 }

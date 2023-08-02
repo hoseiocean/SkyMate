@@ -6,14 +6,25 @@
   
 */
 
+"AirportText_content" = "Airports & airfields available shortly";
+"AirportText_title" = "Airports & airfields";
+
 "ButtonText_languageFlag" = "🇺🇸";
 "ButtonText_listening" = "Listening";
 "ButtonText_off" = "Off";
 "ButtonText_offline" = "Offline";
 "ButtonText_online" = "Online";
 
-"CardText_defaultContent" = "Waiting for order";
-"CardText_defaultTitle" = "Say “Request!”";
+"CommandText_content" = "
+Voice commands:
+- Airports (and airfields)
+- METAR
+- Microphone
+- (Nautical) night
+- NOTAM
+and also languages French and Spanish
+";
+"CommandText_title" = "Available commands";
 
 "MenuText_cancel" = "Cancel";
 "MenuText_english" = "English";
@@ -21,8 +32,21 @@
 "MenuText_selectLanguage" = "Select language";
 "MenuText_spanish" = "Spanish";
 
+"MetarText_title" = "METAR";
+
+"MicrophoneText_content" = "Bye bye";
+"MicrophoneText_title" = "Microphone off.";
+
+"NotamText_content" = "NOTAM available shortly";
+"NotamText_title" = "NOTAM";
+
+"NightText_remaining" = " remaining";
+"NightText_title" = "Nautical night";
+
 "RecognitionProviderText_english" = "English";
 "RecognitionProviderText_french" = "French";
+"RecognitionProviderText_instructionManualContent" = "Waiting for order";
+"RecognitionProviderText_instructionManualTitle" = "Say “Command!”";
 "RecognitionProviderText_missingDictionariesContent" = "We have processed %@ language, but voice recognition cannot work due to missing dictionaries. Please try another language. If the problem persists, contact our support.";
 "RecognitionProviderText_missingDictionariesTitle" = "Unable to load dictionaries";
 "RecognitionProviderText_spanish" = "Spanish";

@@ -24,7 +24,7 @@ struct SMTime {
   private static let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.timeStyle = .short
-    formatter.timeZone = TimeZone(identifier: "UTC")
+    formatter.timeZone = TimeZone(identifier: Const.Id.utc)
     return formatter
   }()
 

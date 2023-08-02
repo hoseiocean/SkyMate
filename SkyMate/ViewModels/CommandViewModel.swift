@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+final class CommandViewModel {
+  
+  init() {
+    let cardTitle = CommandText.title.localized
+    let cardContent = CommandText.content.localized
+    let card = Card(title: cardTitle, content: cardContent)
+    CarrouselViewModel.shared.addCard(card)
+  }
+}

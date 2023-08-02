@@ -7,172 +7,252 @@
 
 import SwiftUI
 
+enum SpeechRecognitionButtonState {
+  case normal, processed, found, fail
+}
+
 struct ButtonView: View {
 
-  private let iconFrameHeight: CGFloat = 30.0
-  private let flagFontSize: CGFloat = 56.0
+  private let buttonsPadding: CGFloat = 16.0
+  private let buttonsSpacing: CGFloat = 12.0
+  private let iconFrameHeight: CGFloat = 36.0
+  private let flagFontSize: CGFloat = 36.0
   private let networkFontSize: CGFloat = 14.0
 
-  @EnvironmentObject var recognitionProvider: RecognitionProvider
-  @EnvironmentObject var recognitionObserver: RecognitionObserver
-
+  @State private var bigCorner: CGFloat = 36.0
+  @State private var buttonState: SpeechRecognitionButtonState = .normal
+  @ObservedObject private var languageViewModel = LanguageViewModel()
+  @State private var littleCorner: CGFloat = 12.0
+  @State private var lockState: Bool = false
   @StateObject private var networkStatusMonitor = NetworkStatusMonitor()
-
-  let gradient = LinearGradient(
-    gradient: Gradient(
-      colors: [
-        Color(red: 20/255, green: 50/255, blue: 100/255),
-        Color(red: 60/255, green: 120/255, blue: 180/255)
-      ]),
-    startPoint: .bottomLeading,
-    endPoint: .topTrailing)
-
-  @State private var bigCorner: CGFloat = 48
-  @State private var littleCorner: CGFloat = 16
   @State private var showingLanguageActionSheet = false
 
-  var body: some View {
-    VStack(spacing: 16) {
-      HStack(spacing: 16) {
-        Button(action: {
-          handleButton1()
-        }) {
-          VStack(alignment: .leading) {
-            HStack {
-              Image(systemName: recognitionObserver.isRecognizing ? Constant.Symbol.microphone : Constant.Symbol.mute)
-                .resizable()
-                .scaledToFit()
-                .shadow(color: Color(red: 20/255, green: 40/255, blue: 80/255), radius: 1, x: 3, y: 3)
-                .frame(height: iconFrameHeight)
-              Spacer()
-            }
-            Spacer()
-            Toggle(isOn: Binding(
-              get: { self.recognitionObserver.isRecognizing },
-              set: { _ in
-                handleButton1()
-              }
-            )) {
-              Text(recognitionObserver.isRecognizing ? ButtonText.listening.localized : "Off")
-            }
-          }
-          .frame(maxWidth: .infinity, maxHeight: .infinity)
-          .padding()
-          .background(gradient)
-          .cornerRadius(bigCorner, corners: [.bottomLeft, .topRight])
-          .cornerRadius(littleCorner, corners: [.bottomRight, .topLeft])
-        }
+  @EnvironmentObject var recognitionProvider: RecognitionProvider
+  @Environment(\.verticalSizeClass) var verticalSizeClass
 
-        Button(action: {
-          handleButton2()
-        }) {
+  var body: some View {
+    VStack(spacing: buttonsSpacing) {
+      HStack(spacing: buttonsSpacing) {
+
+        // MARK: - Airport
+
+        Button(action: { }) {
           VStack {
             HStack {
-              Image(systemName: Constant.Symbol.language)
+              Image(systemName: Const.Symbol.plane)
                 .resizable()
                 .scaledToFit()
-                .shadow(color: Color(red: 20/255, green: 40/255, blue: 80/255), radius: 1, x: 3, y: 3)
                 .frame(height: iconFrameHeight)
+                .foregroundColor(Color(Const.Color.buttonIcon))
               Spacer()
             }
             Spacer()
-            Text(Constant.Symbol.languageFlag)
-              .font(.system(size: flagFontSize))
-              .frame(maxWidth: .infinity, maxHeight: .infinity) // Cela centre le Text dans la VStack
-              .padding(.bottom, 8)
+            Text("DGAA")
+              .foregroundColor(Color(Const.Color.buttonIcon))
           }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
-        .background(gradient)
-        .cornerRadius(littleCorner, corners: [.bottomLeft, .topRight])
-        .cornerRadius(bigCorner, corners: [.bottomRight, .topLeft])
-      }
-      HStack(spacing: 16) {
-        Button(action: { }) {
-          VStack {
+        .background(Color(Const.Color.buttonBackGround))
+        .cornerRadius(littleCorner, corners: [.bottomRight, .topLeft])
+        .cornerRadius(bigCorner, corners: [.bottomLeft, .topRight])
+        .buttonStyle(PlainButtonStyle())
+
+        // MARK: - Speech Recognition
+
+        Button(action: { toggleListening() }) {
+          VStack(alignment: .leading) {
             HStack {
-              Image(systemName: networkStatusMonitor.isConnected ? "checkmark.icloud.fill" : "xmark.icloud.fill")
+              Image(systemName: isListening() ? Const.Symbol.microphone : Const.Symbol.mute)
                 .resizable()
                 .scaledToFit()
-                .shadow(color: Color(red: 20/255, green: 40/255, blue: 80/255), radius: 1, x: 3, y: 3)
                 .frame(height: iconFrameHeight)
+                .foregroundColor(textColor(for: buttonState))
               Spacer()
             }
             Spacer()
-            Text(networkStatusMonitor.isConnected ? "Online" : "Offline")
-              .font(.system(size: networkFontSize))
+            Toggle(isOn: Binding(
+              get: { self.isListening() },
+              set: { _ in
+                self.toggleListening()
+              }
+            )) {
+              Text(self.isListening() ? ButtonText.listening.localized : ButtonText.off.localized)
+                .foregroundColor(textColor(for: buttonState))
+            }
+            .toggleStyle(SwitchToggleStyle(tint: toggleColor(for: buttonState)))
+          }
+          .frame(maxWidth: .infinity, maxHeight: .infinity)
+          .padding()
+          .background(backgroundColor(for: buttonState))
+          .cornerRadius(bigCorner, corners: [.bottomRight, .topLeft])
+          .cornerRadius(littleCorner, corners: [.bottomLeft, .topRight])
+          .buttonStyle(PlainButtonStyle())
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .transcriptionDidFoundTerm)) { _ in
+          withAnimation {
+            self.buttonState = .found
+            self.lockState = true
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+              withAnimation {
+                self.buttonState = .normal
+                self.lockState = false
+              }
+            }
+          }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .didProcessedTranscription)) { _ in
+          guard !self.lockState else { return }
+          withAnimation {
+            self.buttonState = .processed
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.07) {
+              withAnimation {
+                self.buttonState = .normal
+              }
+            }
+          }
+        }
+      }
+      HStack(spacing: buttonsSpacing) {
+
+        // MARK: - Network
+
+        Button(action: { }) {
+          VStack {
+            HStack {
+              Image(systemName: networkStatusMonitor.isConnected ? Const.Symbol.online : Const.Symbol.offline)
+                .resizable()
+                .scaledToFit()
+                .frame(height: iconFrameHeight)
+                .foregroundColor(Color(Const.Color.buttonIcon))
+              Spacer()
+            }
+            Spacer()
+            Toggle(isOn: Binding(
+              get: { self.networkStatusMonitor.isConnected },
+              set: { _ in }
+            )) {
+              Text(networkStatusMonitor.isConnected ? ButtonText.online.localized : ButtonText.offline.localized)
+                .foregroundColor(Color(Const.Color.buttonIcon))
+            }
+            .toggleStyle(SwitchToggleStyle(tint: Color(Const.Color.buttonIcon)))
+            .disabled(true)
+          }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding()
+        .background(Color(Const.Color.buttonBackGround))
+        .cornerRadius(bigCorner, corners: [.bottomRight, .topLeft])
+        .cornerRadius(littleCorner, corners: [.bottomLeft, .topRight])
+        .buttonStyle(PlainButtonStyle())
+        .onAppear {
+          self.networkStatusMonitor.startMonitoring()
+        }
+
+        // MARK: - Language
+
+        Button(action: { self.showingLanguageActionSheet = true }) {
+          VStack {
+            HStack {
+              Image(systemName: Const.Symbol.language)
+                .resizable()
+                .scaledToFit()
+                .frame(height: iconFrameHeight)
+                .foregroundColor(Color(Const.Color.buttonIcon))
+              Spacer()
+            }
+            Spacer()
+            Text(ButtonText.languageFlag.localized)
+              .font(.system(size: flagFontSize))
               .frame(maxWidth: .infinity, maxHeight: .infinity)
           }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
-        .background(gradient)
-        .cornerRadius(bigCorner, corners: [.bottomRight, .topLeft])
-        .cornerRadius(littleCorner, corners: [.bottomLeft, .topRight])
-
-        Button(action: { }) {
-          VStack {
-            HStack {
-              Image(systemName: Constant.Symbol.plane)
-                .resizable()
-                .scaledToFit()
-                .shadow(color: Color(red: 20/255, green: 40/255, blue: 80/255), radius: 1, x: 3, y: 3)
-                .frame(height: iconFrameHeight)
-              Spacer()
-            }
-            Spacer()
-            Text("DGAA")
-          }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
-        .background(gradient)
+        .background(Color(Const.Color.buttonBackGround))
         .cornerRadius(littleCorner, corners: [.bottomRight, .topLeft])
         .cornerRadius(bigCorner, corners: [.bottomLeft, .topRight])
+        .actionSheet(isPresented: $showingLanguageActionSheet) {
+          let languageButtons = SupportedLanguage.allCases
+            .map { ($0, self.getLocalizedName(for: $0) ?? Const.Char.none) }
+            .sorted { $0.1 < $1.1 }
+            .compactMap { createLanguageButton(for: $0.0) }
+          let cancelButton = ActionSheet.Button.cancel(Text(MenuText.cancel.localized)) {}
+          let actionSheetButtons = languageButtons + [cancelButton]
+          return ActionSheet(title: Text(MenuText.selectLanguage.localized), buttons: actionSheetButtons)
+        }
       }
     }
-    .padding(.horizontal, 24)
-    .padding(.top, 24)
-    .padding(.bottom, 8)
+    .padding(.bottom, verticalSizeClass == .compact ? buttonsPadding : buttonsPadding / 2)
+    .padding(.leading, verticalSizeClass == .compact ? .zero : buttonsPadding)
+    .padding(.top, verticalSizeClass == .compact ? buttonsPadding : .zero)
+    .padding(.trailing, buttonsPadding)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .onAppear {
-      self.networkStatusMonitor.startMonitoring()
-    }
-    .actionSheet(isPresented: $showingLanguageActionSheet) {
-      ActionSheet(title: Text(ButtonText.selectLanguage.localized), buttons: [
-        .default(Text("English" + ((UserDefaults.standard.array(forKey: Constant.Key.preferredLanguageKey) as? [String])?.first == "en" ? " ✔️" : ""))) {
-//                Localizer.switchToLanguage(.english)
-            },
-            .default(Text("French" + ((UserDefaults.standard.array(forKey: Constant.Key.preferredLanguageKey) as? [String])?.first == "fr" ? " ✔️" : ""))) {
-//                Localizer.switchToLanguage(.french)
-            },
-            .default(Text("Spanish" + ((UserDefaults.standard.array(forKey: Constant.Key.preferredLanguageKey) as? [String])?.first == "es" ? " ✔️" : ""))) {
-//                Localizer.switchToLanguage(.spanish)
-            },
-            .cancel()
-        ])
+  }
+
+  private func checkmarkOrNothing(for language: SupportedLanguage) -> String {
+    languageViewModel.currentLanguage == language ? Const.Char.check : Const.Char.none
+  }
+
+  private func backgroundColor(for state: SpeechRecognitionButtonState) -> Color {
+    switch state {
+    case .normal, .fail:
+      return Color(Const.Color.buttonBackGround)
+    case .processed:
+      return Color(Const.Color.buttonIcon)
+    case .found:
+      return Color(Const.Color.backgroundWhenRequestSuccessfullyExecuted)
     }
   }
 
-  private func handleButton1() {
-    if recognitionObserver.isRecognizing {
-      recognitionProvider.recognitionManager?.stop()
-    } else {
-      recognitionProvider.recognitionManager?.start()
+  private func textColor(for state: SpeechRecognitionButtonState) -> Color {
+    switch state {
+    case .normal, .fail:
+      return Color(Const.Color.buttonIcon)
+    case .processed:
+      return Color(Const.Color.buttonBackGround)
+    case .found:
+      return Color(Const.Color.foregroundWhenRequestSuccesfullyExecuted)
     }
   }
 
-  private func handleButton2() {
-    self.showingLanguageActionSheet = true
+  private func toggleColor(for state: SpeechRecognitionButtonState) -> Color {
+    switch state {
+    case .normal, .processed, .fail:
+      return Color(Const.Color.buttonIcon)
+    case .found:
+      return Color(Const.Color.foregroundWhenRequestSuccesfullyExecuted)
+    }
   }
 
-  private func handleButton3() {
-    // Code pour le bouton 3
+  private func createLanguageButton(for language: SupportedLanguage) -> ActionSheet.Button? {
+    guard let languageName = getLocalizedName(for: language) else { return nil }
+    return .default(Text(languageName + checkmarkOrNothing(for: language))) {
+      languageViewModel.changeLanguage(to: language)
+    }
   }
 
-  private func handleButton4() {
-    // Code pour le bouton 4
+  private func getLocalizedName(for language: SupportedLanguage) -> String? {
+    guard let languageName = MenuText(rawValue: String(describing: language)) else { return nil }
+    return languageName.localized
+  }
+
+  private func isListening() -> Bool {
+    recognitionProvider.isListening()
+  }
+
+  private func toggleListening() {
+    do {
+      if isListening() {
+        try recognitionProvider.stopListening()
+      } else {
+        try recognitionProvider.startListening()
+      }
+    } catch {
+      // TODO: manage errors
+    }
   }
 
   init() {

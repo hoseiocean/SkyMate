@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+final class NotamViewModel {
+  
+  init() {
+    let cardTitle = NotamText.title.localized
+    let cardContent = NotamText.content.localized
+    let card = Card(title: cardTitle, content: cardContent)
+    CarrouselViewModel.shared.addCard(card)
+  }
+}

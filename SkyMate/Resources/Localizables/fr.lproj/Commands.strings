@@ -6,16 +6,23 @@
   
 */
 
+// MARK: - airport
+
+"Aérodrome" = "airport";
+"Aérodromes" = "airport";
+"Aéroport" = "airport";
+"Aéroports" = "airport";
+
 // MARK: - command
 
 "commande" = "command";
 "commandes" = "command";
 
-// MARK: - destination
+// MARK: - english
 
-"destination" = "destination";
-"destinations" = "destination";
-"dessinassions" = "destination";
+"anglais" = "english";
+"en anglais" = "english";
+"onglet" = "english";
 
 // MARK: - metar
 
@@ -25,11 +32,12 @@
 "mes tar" = "metar";
 "mes tards" = "metar";
 "mes Thor" = "metar";
-"mets mais tard" = "metar";
 "mets tar" = "metar";
+"mets tare" = "metar";
 "mets tard" = "metar";
 "mets tards" = "metar";
 "mets Thor" = "metar";
+"Méard" = "metar";
 "Médard" = "metar";
 "métare" = "metar";
 "mitard" = "metar";
@@ -39,21 +47,35 @@
 
 // MARK: - microphone
 
+"métro" = "microphone";
+"métros" = "microphone";
 "micro" = "microphone";
+"micros" = "microphone";
 "microphone" = "microphone";
 "microphones" = "microphone";
+"microtroglou" = "microphone";
 
 // MARK: - notam
 
 "je ne t'aime" = "notam";
+"ne t\'" = "notam";
 "ne t'aime" = "notam";
+"ne t'aiment" = "notam";
 "ne t'aimes" = "notam";
 "no time" = "notam";
+"noam" = "notam";
 "notamment" = "notam";
+"t'aime" = "notam";
 "t'aimes" = "notam";
 
 // MARK: - night
 
 "nuit" = "night";
-"nuit aéro" = "night";
-"nuit aéronautique" = "night";
+"nuits" = "night";
+
+// MARK: - spanish
+
+"espagnol" = "spanish";
+"espagnole" = "spanish";
+"espagnoles" = "spanish";
+"espagnols" = "spanish";
