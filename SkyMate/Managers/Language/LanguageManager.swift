@@ -119,7 +119,8 @@ final class LanguageManager {
   }
   
   // MARK: - Deinit
-  
+
+  /// Cleans up when the instance is deallocated.
   deinit {
     clearCache()
   }
