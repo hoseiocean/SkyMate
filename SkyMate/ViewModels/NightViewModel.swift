@@ -16,7 +16,7 @@ final class NightViewModel: ObservableObject {
     var cardId: UUID?
     var timer: Timer? = nil
     
-    let updateCardContent = { [weak self] in
+    let updateCardContent = {
       do {
         let smTime = try SMTime()
         

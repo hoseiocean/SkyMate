@@ -51,21 +51,21 @@ enum SMCommand: String, SMTerm {
   func handleTerm() {
     switch self {
     case .airport:
-      AirportViewModel()
+      _ = AirportViewModel()
     case .command:
-      CommandViewModel()
+      _ = CommandViewModel()
     case .english:
       LanguageManager.shared.setLanguage(.english)
     case .french:
       LanguageManager.shared.setLanguage(.french)
     case .metar:
-      MetarViewModel()
+      _ = MetarViewModel()
     case .microphone:
-      MicrophoneViewModel()
+      _ = MicrophoneViewModel()
     case .night:
-      NightViewModel()
+      _ = NightViewModel()
     case .notam:
-      NotamViewModel()
+      _ = NotamViewModel()
     case .spanish:
       LanguageManager.shared.setLanguage(.spanish)
     }
