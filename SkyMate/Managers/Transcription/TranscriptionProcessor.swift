@@ -34,14 +34,14 @@ struct SpeechRecognitionResult {
 extension SFSpeechRecognitionResult {
   func toSpeechRecognitionResult() -> SpeechRecognitionResult {
     if #available(iOS 14.5, *) {
-      SpeechRecognitionResult(
+      return SpeechRecognitionResult(
         bestTranscription: self.bestTranscription.formattedString,
         isFinal: self.isFinal,
         speechRecognitionMetadata: self.speechRecognitionMetadata,
         transcriptions: self.transcriptions.map { $0.formattedString }
       )
     } else {
-      SpeechRecognitionResult(
+      return SpeechRecognitionResult(
         bestTranscription: self.bestTranscription.formattedString,
         isFinal: self.isFinal,
         speechRecognitionMetadata: nil,
