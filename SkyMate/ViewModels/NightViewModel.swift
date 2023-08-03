@@ -8,14 +8,22 @@
 import Combine
 import Foundation
 
+/// `NightViewModel` is a ViewModel that manages the display and updates of night information in
+/// the UI.
 final class NightViewModel: ObservableObject {
-  
+
+  // MARK: - Initialization
+
+  /// Initializes and starts the NightViewModel, which immediately updates the information card and
+  /// starts a timer to update this information every second.
   init() {
     let cardTitle = NightText.title.localized
     var cardContent = String()
     var cardId: UUID?
     var timer: Timer? = nil
-    
+
+    // MARK: - Card content updating
+
     let updateCardContent = {
       do {
         let smTime = try SMTime()
@@ -65,7 +73,9 @@ final class NightViewModel: ObservableObject {
     }
     
     updateCardContent()
-    
+
+    // MARK: - Timer setup
+
     timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
       updateCardContent()
     }

@@ -143,6 +143,7 @@
 		E9D7593B2A35F2C900DE847C /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		E9D759412A35FEED00DE847C /* String+Normalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Normalization.swift"; sourceTree = "<group>"; };
 		E9D9E73D2A7B8EBD00FEF741 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "SkyMate/Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		E9D9E74C2A7BE7F800FEF741 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E9F1DC2D2A54BDFB0077A20B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Letters.strings; sourceTree = "<group>"; };
 		E9F1DC2F2A54BDFC0077A20B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Letters.strings; sourceTree = "<group>"; };
 		E9F1DC302A54BDFD0077A20B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Letters.strings; sourceTree = "<group>"; };
@@ -311,6 +312,7 @@
 				E990D8362A5F0327004E7B5C /* Managers */,
 				E9D7592F2A35F12200DE847C /* Utilities */,
 				E9D759322A35F17F00DE847C /* Resources */,
+				E9D9E74C2A7BE7F800FEF741 /* Config.xcconfig */,
 				E9D759202A35EF3700DE847C /* SkyMate.swift */,
 				E9D759262A35EF3800DE847C /* Preview Content */,
 			);

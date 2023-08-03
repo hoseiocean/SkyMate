@@ -32,6 +32,7 @@ and also languages French and Spanish
 "MenuText_selectLanguage" = "Select language";
 "MenuText_spanish" = "Spanish";
 
+"MetarText_missingURL" = "The API URL is missing.";
 "MetarText_title" = "METAR";
 
 "MicrophoneText_content" = "Bye bye";

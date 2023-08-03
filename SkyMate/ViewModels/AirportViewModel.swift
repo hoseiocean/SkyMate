@@ -5,10 +5,12 @@
 //  Created by Thomas Heinis on 20/07/2023.
 //
 
-import Foundation
-
 final class AirportViewModel {
-  
+
+  // MARK: - Initialization
+
+  /// Creates an `AirportViewModel` instance which initializes a `Card` with the localized title
+  /// and content for the airport, and adds it to the `CarrouselViewModel`.
   init() {
     let cardTitle = AirportText.title.localized
     let cardContent = AirportText.content.localized

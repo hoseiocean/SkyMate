@@ -44,6 +44,7 @@ struct Const {
 
   enum Id {
     static let defaut = "default"
+    static let domain = "dev.happios.SkyMate"
     static let utc = "UTC"
   }
 

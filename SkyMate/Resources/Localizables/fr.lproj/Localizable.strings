@@ -32,6 +32,7 @@ et aussi les langues anglais et espagnol
 "MenuText_selectLanguage" = "Sélection de la langue";
 "MenuText_spanish" = "Espagnol";
 
+"MetarText_missingURL" = "L’URL de l’API est manquante.";
 "MetarText_title" = "METAR";
 
 "MicrophoneText_content" = "Bye bye";

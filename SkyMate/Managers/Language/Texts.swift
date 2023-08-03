@@ -32,6 +32,7 @@ enum MenuText: String, Localizable {
 }
 
 enum MetarText: String, Localizable {
+  case missingURL
   case title
 }
 
