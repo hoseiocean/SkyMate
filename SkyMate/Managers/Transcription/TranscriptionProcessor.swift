@@ -86,16 +86,6 @@ final class TranscriptionProcessor {
     }
   }
   
-  private func extractAndSearchSmTerm(in stringsQueue: StringsQueue) -> (any SMTerm)? {
-    let joinedQueueString = stringsQueue.joined
-    guard
-      let smTerm = try? dictionaryManager.fetchTerm(forKey: joinedQueueString, ofExpectedTypes: expectedTypes)
-    else {
-      return nil
-    }
-    return smTerm
-  }
-  
   private func getTranscriptionFrom(speech: SpeechRecognitionResult) throws -> String? {
     if #available(iOS 14.5, *) {
       guard speech.speechRecognitionMetadata == nil else { return nil }

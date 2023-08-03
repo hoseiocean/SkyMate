@@ -21,7 +21,7 @@ final class CommandProcessor: CommandProcessing {
   private init() {}
 
   func handle(term: any SMTerm) {
-    print(Self.self, "Expected:", expectedType, "Recognized:", type(of: term), term)
+    print(Self.self, "Expected:", expectedType, "Recognized:", type(of: term), "Term:", term)
     guard type(of: term) == self.expectedType else { return }
     guard let command = term as? SMCommand, command != lastCommand else { return }
     lastCommand = command
