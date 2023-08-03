@@ -7,11 +7,21 @@
 
 import Speech
 
+// MARK: - RecognitionManagerDelegate
+
+/// A protocol that defines the delegate methods for the RecognitionManager.
 protocol RecognitionManagerDelegate: AnyObject {
+
+  /// Called when the RecognitionManager successfully starts.
   func recognitionManagerDidStartSuccessfully(_ manager: RecognitionManager)
+
+  /// Called when the RecognitionManager fails to restart.
   func recognitionManagerFailedToRestart(_ manager: RecognitionManager)
 }
 
+// MARK: - RecognitionManagerError
+
+/// Enumerates the errors that the RecognitionManager can throw.
 enum RecognitionManagerError: Error {
   case recognitionRequestCreationFailed
   case recognitionRequestNotSet
@@ -21,6 +31,9 @@ enum RecognitionManagerError: Error {
   case unexpectedRecognitionResult
 }
 
+// MARK: - RecognitionManagerState
+
+/// Enumerates the states that the RecognitionManager can be in.
 enum RecognitionManagerState {
   case error(Error)
   case idle
@@ -29,11 +42,18 @@ enum RecognitionManagerState {
   case stopping
 }
 
+// MARK: - RecognitionManager
+
+/// The main class for managing the speech recognition process.
 final class RecognitionManager: ObservableObject {
+
+  // MARK: - Config
 
   private struct Config {
     static let maxRetryCount = 3
   }
+
+  // MARK: - Private Properties
 
   private let audioManager: AudioManager
   private let dispatchQueue: DispatchQueue
@@ -47,10 +67,17 @@ final class RecognitionManager: ObservableObject {
   private var retryCount: Int = 0
   private var lastTranscription: SFTranscription?
 
+  // MARK: - State Property
+
+  /// The current state of the RecognitionManager.
   @Published private(set) var state: RecognitionManagerState = .idle
 
+  /// The delegate for the RecognitionManager.
   weak var delegate: RecognitionManagerDelegate?
 
+  // MARK: - Initialization
+
+  /// Initializes a new instance of RecognitionManager.
   init(
     audioManager: AudioManager,
     speechRecognizer: SFSpeechRecognizer,
@@ -66,6 +93,8 @@ final class RecognitionManager: ObservableObject {
     self.operatingMode = operatingMode
     audioManager.delegate = self
   }
+
+  // MARK: - Private Methods
 
   private func createRecognitionRequest() throws {
     recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
@@ -157,6 +186,9 @@ final class RecognitionManager: ObservableObject {
     }
   }
 
+  // MARK: - Public Methods
+
+  /// Starts the speech recognition process.
   func listen() {
     if case .listening = state {
       stopAndClean()
@@ -178,6 +210,7 @@ final class RecognitionManager: ObservableObject {
     }
   }
 
+  /// Stops and cleans up the recognition process.
   func stopAndClean() {
     setState(.stopping)
     audioManager.stopAndClean()
@@ -188,6 +221,8 @@ final class RecognitionManager: ObservableObject {
     setState(.idle)
   }
 
+  // MARK: - Deinitialization
+
   deinit {
     guard case .idle = state else {
       stopAndClean()
@@ -196,11 +231,17 @@ final class RecognitionManager: ObservableObject {
   }
 }
 
+// MARK: - AudioManagerDelegate
+
+/// Extension to handle AudioManagerDelegate methods.
 extension RecognitionManager: AudioManagerDelegate {
+
+  /// Handles errors encountered by the AudioManager.
   func audioManager(_ audioManager: AudioManager, didEncounterError error: Swift.Error) {
     self.setState(.error(error))
   }
 
+  /// Handles audio buffer updates from the AudioManager.
   func audioManager(_ audioManager: AudioManager, didUpdate buffer: AVAudioPCMBuffer) async {
     dispatchQueue.async {
       self.recognitionRequest?.append(buffer)

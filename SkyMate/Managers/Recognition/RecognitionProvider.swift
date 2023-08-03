@@ -9,6 +9,9 @@ import Combine
 import Speech
 import SwiftUI
 
+// MARK: - RecognitionProviderError
+
+/// Enum that defines the possible errors that can be thrown by the `RecognitionProvider`.
 enum RecognitionProviderError: String, Localizable, Error {
   case noRecognitonManager
   case notAllPermissionsGranted
@@ -16,17 +19,27 @@ enum RecognitionProviderError: String, Localizable, Error {
   case speechRecognitionNotAvailable
 }
 
+// MARK: - RecognitionProviderOperatingMode
+
+/// Enum that defines the possible operating modes of the `RecognitionProvider`.
 enum RecognitionProviderOperatingMode {
   case learning
   case normal
 }
 
+// MARK: - RecognitionProvider
+
+/// A class that provides a service for recognizing voice commands.
 final class RecognitionProvider: ObservableObject {
+
+  // MARK: - Config
 
   private struct Config {
     static let nanosecondsToSleep: UInt64 = 2 * 1_000_000_000
     static let operatingMode: RecognitionProviderOperatingMode = .normal
   }
+
+  // MARK: - Private Properties
 
   private let languageManager = LanguageManager.shared
 
@@ -35,6 +48,9 @@ final class RecognitionProvider: ObservableObject {
   private var hasCardBeenGenerated = false
   private var hasRestartAttempted = false
 
+  // MARK: - Recognition Manager
+
+  /// The manager responsible for the recognition tasks.
   var recognitionManager: RecognitionManager? {
     didSet {
       guard let manager = recognitionManager else { return }
@@ -46,20 +62,31 @@ final class RecognitionProvider: ObservableObject {
         }
     }
   }
-  
+
+  // MARK: - Recognition Manager State
+
+  /// The current state of the recognition manager.
   @Published var recognitionManagerState: RecognitionManagerState = .idle
 
+  // MARK: - Shared Instance
+
+  /// Shared instance of `RecognitionProvider` for singleton usage.
   static let shared = RecognitionProvider()
-  
+
+  // MARK: - Initialization
+
   private init() {
     NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)
   }
 
+  /// Function called when the language settings did change.
   @objc func languageDidChange() {
     Task {
       await self.start()
     }
   }
+
+  // MARK: - Private Methods
 
   private func handleError(error: RecognitionProviderError) {
     guard areDictionariesLoaded else { return }
@@ -80,6 +107,9 @@ final class RecognitionProvider: ObservableObject {
     }
   }
 
+  // MARK: - Public Methods
+
+  /// Creates a new instance of the `RecognitionManager`.
   func createRecognitionManager() async  {
     areDictionariesLoaded = loadDictionaries()
     guard
@@ -107,6 +137,7 @@ final class RecognitionProvider: ObservableObject {
     }
   }
 
+  /// Checks if the recognition manager is currently listening.
   func isListening() -> Bool {
     guard let recognitionManager else { return false }
     if case .listening = recognitionManager.state {
@@ -115,6 +146,7 @@ final class RecognitionProvider: ObservableObject {
     return false
   }
 
+  /// Loads dictionaries needed for operation.
   func loadDictionaries() -> Bool {
     for type in SMTermType.allCases {
       do {
@@ -147,29 +179,37 @@ final class RecognitionProvider: ObservableObject {
     return true
   }
 
+  /// Starts the recognition manager.
   func start() async  {
     recognitionManager?.stopAndClean()
     recognitionManager = nil
     await createRecognitionManager()
   }
 
+  /// Starts the listening process of the recognition manager.
   func startListening() throws {
     guard let recognitionManager else { throw RecognitionProviderError.noRecognitonManager }
     recognitionManager.listen()
   }
-  
+
+  /// Stops the listening process of the recognition manager.
   func stopListening() throws {
     guard let recognitionManager else { throw RecognitionProviderError.noRecognitonManager }
     recognitionManager.stopAndClean()
   }
+
+  // MARK: - Deinitialization
 
   deinit {
     NotificationCenter.default.removeObserver(self, name: .languageDidChange, object: nil)
   }
 }
 
+// MARK: - RecognitionManagerDelegate
+
+/// Extension of `RecognitionProvider` to conform to `RecognitionManagerDelegate` protocol.
 extension RecognitionProvider: RecognitionManagerDelegate {
-  
+
   func recognitionManagerDidStartSuccessfully(_ manager: RecognitionManager) {
     guard areDictionariesLoaded && !hasCardBeenGenerated else { hasCardBeenGenerated = false; return }
     hasRestartAttempted = false
