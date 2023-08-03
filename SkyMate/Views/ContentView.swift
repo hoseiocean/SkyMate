@@ -9,11 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
 
+  // MARK: - Properties
+
   @StateObject private var viewModel = CarrouselViewModel.shared
 
+  /// The current color scheme of the device
   @Environment(\.colorScheme) var colorScheme
+
+  /// The current vertical size class of the device
   @Environment(\.verticalSizeClass) var verticalSizeClass
 
+  // MARK: - Body
+
+  /// The main body of the ContentView
   var body: some View {
     ZStack {
       if colorScheme == .light {
@@ -39,6 +47,9 @@ struct ContentView: View {
         )
         .edgesIgnoringSafeArea(.all)
       }
+
+      // MARK: - Main Content
+
       Group {
         if verticalSizeClass == .compact {
           // Portrait orientation
@@ -57,6 +68,8 @@ struct ContentView: View {
       .environmentObject(viewModel)
     }
   }
+
+  // MARK: - Carrousel View
 
   private var carrouselView: some View {
     GeometryReader { geometry in
@@ -81,13 +94,14 @@ struct ContentView: View {
   }
 }
 
+// MARK: - Preview
+
+/// Provides a preview of the ContentView in light and dark modes.
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     Group {
       ContentView()
-//        .environmentObject(CommandProcessor.shared)
       ContentView()
-//        .environmentObject(CommandProcessor.shared)
         .environment(\.colorScheme, .dark)
     }
   }

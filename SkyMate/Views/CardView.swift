@@ -8,14 +8,22 @@
 import Combine
 import SwiftUI
 
+/// `CardView` is a view that presents a card with its contents and title.
 struct CardView: View {
+
+  // MARK: - Configuration Struct
 
   private struct Config {
     static let cardViewPadding: CGFloat = 16.0
     static let cardViewCornerRadius: CGFloat = 16.0
   }
 
+  // MARK: - Properties
+
+  /// The card object to be displayed by the CardView.
   @ObservedObject var card: Card
+
+  // MARK: - Body
 
   var body: some View {
     RoundedRectangle(cornerRadius: Config.cardViewCornerRadius)
@@ -26,6 +34,9 @@ struct CardView: View {
       .overlay(
         GeometryReader { geometry in
           VStack(spacing: 0) {
+
+            // MARK: - Card Content
+
             VStack {
               Text(card.content)
                 .font(.title2.monospacedDigit())
@@ -36,6 +47,9 @@ struct CardView: View {
             .background(Color(Const.Color.cardBackground))
             .clipShape(RoundedCorner(radius: Config.cardViewCornerRadius, corners: [.topLeft, .topRight]))
             .padding([.leading, .top, .trailing], Config.cardViewPadding)
+
+            // MARK: - Card Title
+
             VStack {
               Text(card.title)
                 .font(.system(size: 18.0, weight: .semibold))

@@ -7,11 +7,17 @@
 
 import SwiftUI
 
+/// Represents the state of a speech recognition button.
 enum SpeechRecognitionButtonState {
   case normal, processed, found, fail
 }
 
+// MARK: - Button View
+
+/// A SwiftUI View representing a collection of control buttons with various functionalities.
 struct ButtonView: View {
+
+  // MARK: - Properties
 
   private let buttonsPadding: CGFloat = 16.0
   private let buttonsSpacing: CGFloat = 12.0
@@ -27,9 +33,15 @@ struct ButtonView: View {
   @StateObject private var networkStatusMonitor = NetworkStatusMonitor()
   @State private var showingLanguageActionSheet = false
 
+  /// The recognition provider for the speech functionality.
   @EnvironmentObject var recognitionProvider: RecognitionProvider
+
+  /// The current vertical size class of the device.
   @Environment(\.verticalSizeClass) var verticalSizeClass
 
+  // MARK: - Body
+
+  /// Defines the content and behavior of the view.
   var body: some View {
     VStack(spacing: buttonsSpacing) {
       HStack(spacing: buttonsSpacing) {
@@ -192,6 +204,15 @@ struct ButtonView: View {
     .frame(maxWidth: .infinity, maxHeight: .infinity)
   }
 
+  // MARK: - Initializer
+
+  /// Creates a new instance of ButtonView.
+  init() {
+    _networkStatusMonitor = StateObject(wrappedValue: NetworkStatusMonitor())
+  }
+
+  // MARK: - Private Helper Functions
+
   private func checkmarkOrNothing(for language: SupportedLanguage) -> String {
     languageViewModel.currentLanguage == language ? Const.Char.check : Const.Char.none
   }
@@ -254,13 +275,11 @@ struct ButtonView: View {
       // TODO: manage errors
     }
   }
-
-  init() {
-    _networkStatusMonitor = StateObject(wrappedValue: NetworkStatusMonitor())
-  }
-
 }
 
+// MARK: - Preview Provider
+
+/// A structure that adapts a custom View for Xcode’s canvas previews.
 struct ButtonView_Previews: PreviewProvider {
   static var previews: some View {
     ButtonView()
