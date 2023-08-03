@@ -7,9 +7,51 @@
 
 import Foundation
 
+// A protocol defining methods for managing a dictionary of SM Terms
 protocol DictionaryManaging {
+
+  /// Fetches a term from the dictionaries of all term types based on the input key string.
+  ///
+  /// - Parameters:
+  ///   - keyString: The key to search for within the dictionary keys.
+  ///
+  /// - Returns: A tuple containing the corresponding value and its term type if a matching key is
+  ///   found; otherwise, `nil`.
+  ///
+  /// - Throws: Throws a `DictionaryError.invalidDictionaryContent` error if the dictionary content
+  /// is not valid.
   func fetchTerm(forKey keyString: String) throws -> (any SMTerm)?
+
+  /// Attempts to find a term in dictionaries of specified term types based on the input key
+  /// string. Unlike a typical dictionary search, this function looks for the presence of the key
+  /// string within the dictionary keys, allowing for inexact matching. This is used to facilitate
+  /// language handling where the input key might not be an exact match.
+  ///
+  /// - Parameters:
+  ///   - keyString: The key to search for within the dictionary keys.
+  ///   - termTypes: The types of terms to be searched. The function will search across all given
+  ///   term types to the first occurrence found.
+  ///
+  /// - Returns: A tuple containing the corresponding value and its term type if a matching key is
+  ///   found; otherwise, `nil`.
+  ///
+  /// - Throws: Throws a `DictionaryError.invalidDictionaryContent` error if the dictionary content
+  /// is not valid.
   func fetchTerm(forKey keyString: String, ofExpectedTypes termTypes: [SMTermType]) throws -> (any SMTerm)?
+
+  /// Attempts to find a term in a dictionary based on the input key string.
+  /// Unlike a typical dictionary search, this function looks for the presence of the key string
+  /// within the dictionary keys, allowing for inexact matching. This is used to facilitate
+  /// language handling where the input key might not be an exact match.
+  ///
+  /// - Parameters:
+  ///   - keyString: The key to search for within the dictionary keys.
+  ///   - termType: The type of term being searched.
+  ///
+  /// - Returns: The corresponding value if a matching key is found; otherwise, `nil`.
+  ///
+  /// - Throws: Throws a `DictionaryError.invalidDictionaryContent` error if the dictionary content
+  /// is not valid.
   func fetchTerm(forKey keyString: String, ofType termType: SMTermType) throws -> (any SMTerm)?
 }
 
@@ -57,14 +99,15 @@ final class DictionaryManager {
 
   // MARK: - Dictionary Management
 
-  /// Returns the dictionary’s content for the given term type in the specified language.
+  /// Returns the dictionary content for the given term type in the specified language.
   ///
   /// - Parameters:
-  ///   - termType: The type of terms for which to return the dictionary.
+  ///   - termType: The type of terms to return the dictionary for.
   ///   - language: The language of the dictionary. The default value is the current language
   ///   of the app.
   /// - Returns: The dictionary of homophones to SM terms.
-  /// - Throws: If the dictionary could not be found or if its content is invalid.
+  /// - Throws: Throws `DictionaryManagerError.dictionaryNotFound` or `DictionaryManagerError.invalidDictionaryContent`
+  ///   if the dictionary could not be found or if its content is invalid.
   func content(forSMTermType termType: SMTermType, inLanguage language: SupportedLanguage = LanguageManager.shared.currentLanguage.value) throws -> HomophonesDictionary? {
 
     // Don’t waste time if we already have the requested dictionary!
@@ -93,23 +136,18 @@ final class DictionaryManager {
     return dictionaryContent
   }
 
-  /// Attempts to find a term in dictionaries of specified term types based on the input key
-  /// string. Unlike a typical dictionary search, this function looks for the presence of the key
-  /// string within the dictionary keys, allowing for inexact matching. This is used to facilitate
-  /// language handling where the input key might not be an exact match.
+  /// Searches for a term in dictionaries of specified term types based on the input key string.
   ///
   /// - Parameters:
   ///   - keyString: The key to search for within the dictionary keys.
-  ///   - termTypes: The types of terms to be searched. The function will search across all given
-  ///   term types to the first occurrence found.
-  ///   - language: The language in which to perform the search.
-  ///     Defaults to the current language used by the `LanguageManager`.
+  ///   - termTypes: The types of terms to be searched.
+  ///   - language: The language in which to perform the search. Defaults to the current language
+  ///   used by the `LanguageManager`.
   ///
-  /// - Returns: A tuple containing the corresponding value and its term type if a matching key is
-  ///   found; otherwise, `nil`.
+  /// - Returns: An `SMTerm` instance if a matching key is found; otherwise, `nil`.
   ///
-  /// - Throws: Throws a `DictionaryError.invalidDictionaryContent` error if the dictionary content
-  /// is not valid.
+  /// - Throws: Throws `DictionaryManagerError.invalidDictionaryContent` error if the dictionary
+  /// content is not valid.
   func term(forKey keyString: String, ofExpectedTypes termTypes: [SMTermType], inLanguage language: SupportedLanguage = LanguageManager.shared.currentLanguage.value) throws -> (any SMTerm)? {
     for type in termTypes {
       if let term = try term(forKey: keyString, ofType: type) {
@@ -119,21 +157,18 @@ final class DictionaryManager {
     return nil
   }
 
-  /// Attempts to find a term in a dictionary based on the input key string.
-  /// Unlike a typical dictionary search, this function looks for the presence of the key string
-  /// within the dictionary keys, allowing for inexact matching. This is used to facilitate
-  /// language handling where the input key might not be an exact match.
+  /// Searches for a term in a dictionary of a specified term type based on the input key string.
   ///
   /// - Parameters:
   ///   - keyString: The key to search for within the dictionary keys.
   ///   - termType: The type of term being searched.
-  ///   - language: The language in which to perform the search.
-  ///     Defaults to the current language used by the `LanguageManager`.
+  ///   - language: The language in which to perform the search. Defaults to the current language
+  ///   used by the `LanguageManager`.
   ///
-  /// - Returns: The corresponding value if a matching key is found; otherwise, `nil`.
+  /// - Returns: An `SMTerm` instance if a matching key is found; otherwise, `nil`.
   ///
-  /// - Throws: Throws a `DictionaryError.invalidDictionaryContent` error if the dictionary content
-  /// is not valid.
+  /// - Throws: Throws `DictionaryManagerError.invalidDictionaryContent` error if the dictionary
+  /// content is not valid.
   func term(forKey keyString: String, ofType termType: SMTermType, inLanguage language: SupportedLanguage = LanguageManager.shared.currentLanguage.value) throws -> (any SMTerm)? {
 
     // Normalize the key string to ensure consistent matching
@@ -162,23 +197,16 @@ final class DictionaryManager {
   }
 
   /// Searches for a term in the dictionaries of all term types based on the input key string.
-  /// Unlike a typical dictionary search, this function looks for the presence of the key string
-  /// within the dictionary keys, allowing for inexact matching. This is used to facilitate
-  /// language handling where the input key might not be an exact match.
-  ///
-  /// This function iterates through all available `SMTermType` cases, and returns the first found
-  /// match along with its term type.
   ///
   /// - Parameters:
   ///   - keyString: The key to search for within the dictionary keys.
-  ///   - language: The language in which to perform the search.
-  ///     Defaults to the current language used by the `LanguageManager`.
+  ///   - language: The language in which to perform the search. Defaults to the current language
+  ///   used by the `LanguageManager`.
   ///
-  /// - Returns: A tuple containing the corresponding value and its term type if a matching, and
-  ///   only the first matching, key is found; otherwise, `nil`.
+  /// - Returns: An `SMTerm` instance if a matching key is found; otherwise, `nil`.
   ///
-  /// - Throws: Throws a `DictionaryError.invalidDictionaryContent` error if the dictionary content
-  /// is not valid.
+  /// - Throws: Throws `DictionaryManagerError.invalidDictionaryContent` error if the dictionary
+  /// content is not valid.
   func term(forKey keyString: String, inLanguage language: SupportedLanguage = LanguageManager.shared.currentLanguage.value) throws -> (any SMTerm)? {
     for type in SMTermType.allCases {
       if let term = try term(forKey: keyString, ofType: type) {
