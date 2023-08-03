@@ -7,6 +7,8 @@
 
 import Speech
 
+/// `PermissionManager` is a final class that is used for handling audio and speech recognition
+/// permissions in the application.
 final class PermissionManager {
 
   // MARK: - Properties
@@ -39,6 +41,10 @@ final class PermissionManager {
 
   // MARK: - Public Methods
 
+  /// Asynchronously requests all necessary permissions for audio and speech recognition
+  /// functionality. If permissions have already been granted, it doesn’t request them again.
+  ///
+  /// - Returns: `true` if all permissions have been granted, `false` otherwise.
   func requestAllPermissions() async -> Bool {
     var hasAudioPermission = hasAudioSource
     var hasSpeechPermission = hasSpeechRecognitionPermission
