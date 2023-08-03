@@ -5,6 +5,10 @@
 //  Created by Thomas Heinis on 13/07/2023.
 //
 
+/* Each character string used in the application is defined here
+   so that it can be reused in different views if required.
+ */
+
 enum AirportText: String, Localizable {
   case title
   case content

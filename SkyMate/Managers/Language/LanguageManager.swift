@@ -13,8 +13,8 @@ final class LanguageManager {
   
   // MARK: - Properties
 
-  // cacheQueue is used to perform cache-related operations in a thread-safe manner.
-  // Operations that mutate the cache are wrapped in this queue to prevent data races.
+  // cacheQueue is used to perform cache-related operations in a thread-safe manner. Operations
+  // that mutate the cache are wrapped in this queue to prevent data races.
   private let cacheQueue = DispatchQueue(label: Const.Label.cacheQueue, qos: .userInitiated)
 
   // changingLanguageQueue is used to ensure that language changing operations are thread-safe.
