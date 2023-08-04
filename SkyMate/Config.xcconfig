@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  SkyMate
+//
+//  Created by Thomas Heinis on 04/08/2023.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+APP_KEY_KEY = FAKE_KEY_KEY
+APP_KEY_VALUE = FAKE_KEY_VALUE
