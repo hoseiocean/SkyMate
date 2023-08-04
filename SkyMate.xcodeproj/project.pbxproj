@@ -53,6 +53,7 @@
 		E9A1667A2A6EBCF50086A400 /* logo-skymate.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A166792A6EBCF50086A400 /* logo-skymate.png */; };
 		E9A772612A3C3E8A005BFFA6 /* Commands.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9A772632A3C3E8A005BFFA6 /* Commands.strings */; };
 		E9AC444F2A3A5934004FE538 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC444E2A3A5934004FE538 /* Queue.swift */; };
+		E9ADC84B2A7CF07000F10D1D /* SkyMateQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ADC84A2A7CF07000F10D1D /* SkyMateQueueTests.swift */; };
 		E9C36E672A4498C9008CBE66 /* RecognitionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C36E662A4498C9008CBE66 /* RecognitionProvider.swift */; };
 		E9D759212A35EF3700DE847C /* SkyMate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D759202A35EF3700DE847C /* SkyMate.swift */; };
 		E9D759232A35EF3700DE847C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D759222A35EF3700DE847C /* ContentView.swift */; };
@@ -132,6 +133,7 @@
 		E9A772642A3C3E8D005BFFA6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Commands.strings; sourceTree = "<group>"; };
 		E9A772652A3C3E8E005BFFA6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Commands.strings; sourceTree = "<group>"; };
 		E9AC444E2A3A5934004FE538 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		E9ADC84A2A7CF07000F10D1D /* SkyMateQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyMateQueueTests.swift; sourceTree = "<group>"; };
 		E9C36E662A4498C9008CBE66 /* RecognitionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionProvider.swift; sourceTree = "<group>"; };
 		E9D7591D2A35EF3700DE847C /* SkyMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D759202A35EF3700DE847C /* SkyMate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyMate.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				E97F7A4D2A73C7C8009EA23B /* SkyMateTests.swift */,
+				E9ADC84A2A7CF07000F10D1D /* SkyMateQueueTests.swift */,
 			);
 			path = SkyMateTests;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9ADC84B2A7CF07000F10D1D /* SkyMateQueueTests.swift in Sources */,
 				E97F7A4E2A73C7C8009EA23B /* SkyMateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

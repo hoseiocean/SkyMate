@@ -91,6 +91,7 @@ class Queue<T> {
   func isEmpty() -> Bool {
     queue.isEmpty
   }
+  
   /// Checks if the queue is full (i.e., the number of items equals the capacity).
   /// - Returns: True if the queue is full, false otherwise.
   func isFull() -> Bool {
