@@ -100,7 +100,7 @@ final class LanguageManager {
   ///   - language: The language in which the string should be localized.
   /// - Returns: The localized string for the key, or `nil` if the key cannot be
   /// found.
-  func localizedString(forKey stringKey: String, inLanguage language: SupportedLanguage) -> String? {
+  func localizedString(forKey stringKey: String, inLanguage language: SupportedLanguage) -> String {
 
     // Using localizedStringQueue to ensure thread safety while fetching the localized string.
     localizedStringQueue.sync {
