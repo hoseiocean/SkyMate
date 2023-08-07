@@ -23,9 +23,8 @@ class Queue<T> {
   /// - Parameter capacity: The maximum number of items the queue can hold. Defaults to 10.
   ///   Must be greater than 0.
   init(capacity: Int = 10) {
-    assert(capacity > 0, "Capacity must be greater than 0")
     self.queue = [T]()
-    self.capacity = max(.zero, capacity)
+    self.capacity = max(1, capacity)
   }
 
   // MARK: - Public Methods

@@ -8,5 +8,5 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-APP_KEY_KEY = FAKE_KEY_KEY
-APP_KEY_VALUE = FAKE_KEY_VALUE
+APP_KEY_KEY = X-API-Key
+APP_KEY_VALUE = 5d540a86255f4128a040f61648

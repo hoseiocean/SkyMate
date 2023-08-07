@@ -16,7 +16,6 @@
 		E961674B2A597E61002D1306 /* SMTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E961674A2A597E60002D1306 /* SMTime.swift */; };
 		E961674E2A59910D002D1306 /* Solar in Frameworks */ = {isa = PBXBuildFile; productRef = E961674D2A59910D002D1306 /* Solar */; };
 		E972AD082A4B75BB00B36B9E /* NetworkStatusMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E972AD072A4B75BB00B36B9E /* NetworkStatusMonitor.swift */; };
-		E97F7A4E2A73C7C8009EA23B /* SkyMateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97F7A4D2A73C7C8009EA23B /* SkyMateTests.swift */; };
 		E990D8312A5F0290004E7B5C /* Metar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990D8302A5F0290004E7B5C /* Metar.swift */; };
 		E990D83A2A5F1A26004E7B5C /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990D8392A5F1A26004E7B5C /* LanguageManager.swift */; };
 		E990D83F2A606C5E004E7B5C /* SupportedLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990D83E2A606C5E004E7B5C /* SupportedLanguage.swift */; };
@@ -53,7 +52,6 @@
 		E9A1667A2A6EBCF50086A400 /* logo-skymate.png in Resources */ = {isa = PBXBuildFile; fileRef = E9A166792A6EBCF50086A400 /* logo-skymate.png */; };
 		E9A772612A3C3E8A005BFFA6 /* Commands.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9A772632A3C3E8A005BFFA6 /* Commands.strings */; };
 		E9AC444F2A3A5934004FE538 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AC444E2A3A5934004FE538 /* Queue.swift */; };
-		E9ADC84B2A7CF07000F10D1D /* SkyMateQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ADC84A2A7CF07000F10D1D /* SkyMateQueueTests.swift */; };
 		E9C36E672A4498C9008CBE66 /* RecognitionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C36E662A4498C9008CBE66 /* RecognitionProvider.swift */; };
 		E9D759212A35EF3700DE847C /* SkyMate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D759202A35EF3700DE847C /* SkyMate.swift */; };
 		E9D759232A35EF3700DE847C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D759222A35EF3700DE847C /* ContentView.swift */; };
@@ -68,11 +66,12 @@
 		E9D9E7472A7BB52F00FEF741 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = E9D9E7462A7BB52F00FEF741 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		E9D9E7492A7BB52F00FEF741 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = E9D9E7482A7BB52F00FEF741 /* FirebaseCrashlytics */; };
 		E9D9E74B2A7BB52F00FEF741 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = E9D9E74A2A7BB52F00FEF741 /* FirebasePerformance */; };
+		E9E508A32A8010A000BE2734 /* SkyMateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E508A22A8010A000BE2734 /* SkyMateTests.swift */; };
 		E9F1DC2C2A54BDFB0077A20B /* Letters.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9F1DC2E2A54BDFB0077A20B /* Letters.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E97F7A4F2A73C7C8009EA23B /* PBXContainerItemProxy */ = {
+		E9E508A42A8010A000BE2734 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E9D759152A35EF3700DE847C /* Project object */;
 			proxyType = 1;
@@ -91,8 +90,6 @@
 		E961674A2A597E60002D1306 /* SMTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMTime.swift; sourceTree = "<group>"; };
 		E972AD072A4B75BB00B36B9E /* NetworkStatusMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatusMonitor.swift; sourceTree = "<group>"; };
 		E97E41B82A7D21AD0064FEB7 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		E97F7A4B2A73C7C8009EA23B /* SkyMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkyMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E97F7A4D2A73C7C8009EA23B /* SkyMateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyMateTests.swift; sourceTree = "<group>"; };
 		E98A4EB52A4ED59D00B373EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E990D8302A5F0290004E7B5C /* Metar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metar.swift; sourceTree = "<group>"; };
 		E990D8392A5F1A26004E7B5C /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
@@ -134,7 +131,6 @@
 		E9A772642A3C3E8D005BFFA6 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Commands.strings; sourceTree = "<group>"; };
 		E9A772652A3C3E8E005BFFA6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Commands.strings; sourceTree = "<group>"; };
 		E9AC444E2A3A5934004FE538 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		E9ADC84A2A7CF07000F10D1D /* SkyMateQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyMateQueueTests.swift; sourceTree = "<group>"; };
 		E9C36E662A4498C9008CBE66 /* RecognitionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionProvider.swift; sourceTree = "<group>"; };
 		E9D7591D2A35EF3700DE847C /* SkyMate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkyMate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D759202A35EF3700DE847C /* SkyMate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyMate.swift; sourceTree = "<group>"; };
@@ -146,19 +142,14 @@
 		E9D7593B2A35F2C900DE847C /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 		E9D759412A35FEED00DE847C /* String+Normalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Normalization.swift"; sourceTree = "<group>"; };
 		E9D9E73D2A7B8EBD00FEF741 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "SkyMate/Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		E9E508A02A8010A000BE2734 /* SkyMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkyMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9E508A22A8010A000BE2734 /* SkyMateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyMateTests.swift; sourceTree = "<group>"; };
 		E9F1DC2D2A54BDFB0077A20B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Letters.strings; sourceTree = "<group>"; };
 		E9F1DC2F2A54BDFC0077A20B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Letters.strings; sourceTree = "<group>"; };
 		E9F1DC302A54BDFD0077A20B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Letters.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E97F7A482A73C7C8009EA23B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E9D7591A2A35EF3700DE847C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -170,6 +161,13 @@
 				E9D9E7492A7BB52F00FEF741 /* FirebaseCrashlytics in Frameworks */,
 				E9D9E7432A7BB52F00FEF741 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				E961674E2A59910D002D1306 /* Solar in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9E5089D2A8010A000BE2734 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,15 +200,6 @@
 				E992E3952A3B5BF6002336A7 /* TranscriptionProcessor.swift */,
 			);
 			path = Transcription;
-			sourceTree = "<group>";
-		};
-		E97F7A4C2A73C7C8009EA23B /* SkyMateTests */ = {
-			isa = PBXGroup;
-			children = (
-				E97F7A4D2A73C7C8009EA23B /* SkyMateTests.swift */,
-				E9ADC84A2A7CF07000F10D1D /* SkyMateQueueTests.swift */,
-			);
-			path = SkyMateTests;
 			sourceTree = "<group>";
 		};
 		E990D8362A5F0327004E7B5C /* Managers */ = {
@@ -292,7 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				E9D7591F2A35EF3700DE847C /* SkyMate */,
-				E97F7A4C2A73C7C8009EA23B /* SkyMateTests */,
+				E9E508A12A8010A000BE2734 /* SkyMateTests */,
 				E9D7591E2A35EF3700DE847C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -301,7 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				E9D7591D2A35EF3700DE847C /* SkyMate.app */,
-				E97F7A4B2A73C7C8009EA23B /* SkyMateTests.xctest */,
+				E9E508A02A8010A000BE2734 /* SkyMateTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -391,6 +380,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E9E508A12A8010A000BE2734 /* SkyMateTests */ = {
+			isa = PBXGroup;
+			children = (
+				E9E508A22A8010A000BE2734 /* SkyMateTests.swift */,
+			);
+			path = SkyMateTests;
+			sourceTree = "<group>";
+		};
 		E9F1DC272A54B8850077A20B /* Execution */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,24 +401,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E97F7A4A2A73C7C8009EA23B /* SkyMateTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E97F7A532A73C7C8009EA23B /* Build configuration list for PBXNativeTarget "SkyMateTests" */;
-			buildPhases = (
-				E97F7A472A73C7C8009EA23B /* Sources */,
-				E97F7A482A73C7C8009EA23B /* Frameworks */,
-				E97F7A492A73C7C8009EA23B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E97F7A502A73C7C8009EA23B /* PBXTargetDependency */,
-			);
-			name = SkyMateTests;
-			productName = SkyMateTests;
-			productReference = E97F7A4B2A73C7C8009EA23B /* SkyMateTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		E9D7591C2A35EF3700DE847C /* SkyMate */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9D7592B2A35EF3800DE847C /* Build configuration list for PBXNativeTarget "SkyMate" */;
@@ -448,6 +427,24 @@
 			productReference = E9D7591D2A35EF3700DE847C /* SkyMate.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E9E5089F2A8010A000BE2734 /* SkyMateTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E9E508A62A8010A000BE2734 /* Build configuration list for PBXNativeTarget "SkyMateTests" */;
+			buildPhases = (
+				E9E5089C2A8010A000BE2734 /* Sources */,
+				E9E5089D2A8010A000BE2734 /* Frameworks */,
+				E9E5089E2A8010A000BE2734 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E9E508A52A8010A000BE2734 /* PBXTargetDependency */,
+			);
+			name = SkyMateTests;
+			productName = SkyMateTests;
+			productReference = E9E508A02A8010A000BE2734 /* SkyMateTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -458,12 +455,12 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					E97F7A4A2A73C7C8009EA23B = {
-						CreatedOnToolsVersion = 15.0;
-						TestTargetID = E9D7591C2A35EF3700DE847C;
-					};
 					E9D7591C2A35EF3700DE847C = {
 						CreatedOnToolsVersion = 14.3;
+					};
+					E9E5089F2A8010A000BE2734 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = E9D7591C2A35EF3700DE847C;
 					};
 				};
 			};
@@ -487,19 +484,12 @@
 			projectRoot = "";
 			targets = (
 				E9D7591C2A35EF3700DE847C /* SkyMate */,
-				E97F7A4A2A73C7C8009EA23B /* SkyMateTests */,
+				E9E5089F2A8010A000BE2734 /* SkyMateTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E97F7A492A73C7C8009EA23B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		E9D7591B2A35EF3700DE847C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -520,18 +510,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		E97F7A472A73C7C8009EA23B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+		E9E5089E2A8010A000BE2734 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9ADC84B2A7CF07000F10D1D /* SkyMateQueueTests.swift in Sources */,
-				E97F7A4E2A73C7C8009EA23B /* SkyMateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		E9D759192A35EF3700DE847C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -579,13 +567,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E9E5089C2A8010A000BE2734 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E9E508A32A8010A000BE2734 /* SkyMateTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E97F7A502A73C7C8009EA23B /* PBXTargetDependency */ = {
+		E9E508A52A8010A000BE2734 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E9D7591C2A35EF3700DE847C /* SkyMate */;
-			targetProxy = E97F7A4F2A73C7C8009EA23B /* PBXContainerItemProxy */;
+			targetProxy = E9E508A42A8010A000BE2734 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -633,55 +629,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E97F7A512A73C7C8009EA23B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E97E41B82A7D21AD0064FEB7 /* Config.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 35HGB43CC5;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.happios.SkyMateTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkyMate.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SkyMate";
-			};
-			name = Debug;
-		};
-		E97F7A522A73C7C8009EA23B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E97E41B82A7D21AD0064FEB7 /* Config.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 35HGB43CC5;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.happios.SkyMateTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkyMate.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SkyMate";
-			};
-			name = Release;
-		};
 		E9D759292A35EF3800DE847C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E97E41B82A7D21AD0064FEB7 /* Config.xcconfig */;
@@ -878,18 +825,54 @@
 			};
 			name = Release;
 		};
+		E9E508A72A8010A000BE2734 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35HGB43CC5;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.happios.SkyMateTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkyMate.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SkyMate";
+			};
+			name = Debug;
+		};
+		E9E508A82A8010A000BE2734 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 35HGB43CC5;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.happios.SkyMateTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SkyMate.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SkyMate";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E97F7A532A73C7C8009EA23B /* Build configuration list for PBXNativeTarget "SkyMateTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E97F7A512A73C7C8009EA23B /* Debug */,
-				E97F7A522A73C7C8009EA23B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E9D759182A35EF3700DE847C /* Build configuration list for PBXProject "SkyMate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -904,6 +887,15 @@
 			buildConfigurations = (
 				E9D7592C2A35EF3800DE847C /* Debug */,
 				E9D7592D2A35EF3800DE847C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E9E508A62A8010A000BE2734 /* Build configuration list for PBXNativeTarget "SkyMateTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9E508A72A8010A000BE2734 /* Debug */,
+				E9E508A82A8010A000BE2734 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
