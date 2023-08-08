@@ -49,7 +49,7 @@ final class AudioManager {
     static let bufferSize: UInt32 = 1024
   }
 
-  private let audioEngine = AVAudioEngine()
+  private var audioEngine: AVAudioEngine? = AVAudioEngine()
   private let bufferProcessingQueue = DispatchQueue(label: Const.Label.bufferProcessingQueue)
 
   private var isTapping: Bool = false
@@ -60,7 +60,8 @@ final class AudioManager {
 
   /// A boolean property indicating whether the audio engine is running.
   var isListening: Bool {
-    audioEngine.isRunning
+    guard let audioEngine else { return false }
+    return audioEngine.isRunning
   }
 
   // MARK: - Public Methods
@@ -97,8 +98,8 @@ final class AudioManager {
     // output. Here, we’re sending the audio data to our delegate via the
     // `audioManager(_:didUpdate:)` method.
     if !isTapping {
-      let audioFormat = audioEngine.inputNode.outputFormat(forBus: Configuration.audioBus)
-      audioEngine.inputNode.installTap(
+      let audioFormat = audioEngine?.inputNode.outputFormat(forBus: Configuration.audioBus)
+      audioEngine?.inputNode.installTap(
         onBus: Configuration.audioBus,
         bufferSize: Configuration.bufferSize,
         format: audioFormat
@@ -113,9 +114,9 @@ final class AudioManager {
       isTapping = true
     }
 
-    audioEngine.prepare()
+    audioEngine?.prepare()
     do {
-      try audioEngine.start()
+      try audioEngine?.start()
     } catch {
       delegate?.audioManager(self, didEncounterError: AudioManagerError.audioEngineStartingFailed(error: error))
     }
@@ -127,10 +128,10 @@ final class AudioManager {
   /// system resources.
   func stopAndClean() {
     if isListening {
-      audioEngine.inputNode.removeTap(onBus: Configuration.audioBus)
+      audioEngine?.inputNode.removeTap(onBus: Configuration.audioBus)
       isTapping = false
-      audioEngine.stop()
-      audioEngine.reset()
+      audioEngine?.stop()
+      audioEngine?.reset()
     }
   }
 
