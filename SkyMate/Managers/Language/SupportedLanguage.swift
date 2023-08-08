@@ -10,6 +10,7 @@ import Foundation
 /// SupportedLanguage is an enumeration of supported languages. Conforms to the `RawRepresentable`
 /// protocol and provides raw string values that match the ISO 639-1 language codes.
 enum SupportedLanguage: String, CaseIterable {
+  case dummish = "zh"
   case english = "en"
   case french = "fr"
   case spanish = "es"
@@ -20,13 +21,13 @@ enum SupportedLanguage: String, CaseIterable {
   /// English as a default language.
   static var defaultLanguage: SupportedLanguage {
     if let appLanguage = UserDefaults.standard.string(forKey: Const.Key.appLanguage),
-       let supportedLanguage = SupportedLanguage(rawValue: appLanguage) {
-      return supportedLanguage
+       let defaultLanguage = SupportedLanguage(rawValue: appLanguage) {
+      return defaultLanguage
     }
 
     if let languageCode = Locale.current.languageCode,
-       let supportedLanguage = SupportedLanguage(rawValue: languageCode) {
-      return supportedLanguage
+       let defaultLanguage = SupportedLanguage(rawValue: languageCode) {
+      return defaultLanguage
     }
 
     return .english

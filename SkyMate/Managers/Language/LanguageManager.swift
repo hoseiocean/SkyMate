@@ -38,13 +38,20 @@ final class LanguageManager {
 
   /// Save the previous language. By default, it is nil.
   var previousLanguage: SupportedLanguage?
-
+  
   // MARK: - Initializer
   
+#if DEBUG
+  init() {
+    let languageCode = SupportedLanguage.defaultLanguage.rawValue
+    currentLanguage.value = SupportedLanguage(rawValue: languageCode) ?? SupportedLanguage.defaultLanguage
+  }
+#else
   private init() {
     let languageCode = SupportedLanguage.defaultLanguage.rawValue
     currentLanguage.value = SupportedLanguage(rawValue: languageCode) ?? SupportedLanguage.defaultLanguage
   }
+#endif
   
   // MARK: - Cache Management
 
