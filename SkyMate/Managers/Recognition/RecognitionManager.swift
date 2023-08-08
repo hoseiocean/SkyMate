@@ -55,17 +55,17 @@ final class RecognitionManager: ObservableObject {
 
   // MARK: - Private Properties
 
-  private let audioManager: AudioManager
   private let dispatchQueue: DispatchQueue
-  private let operatingMode: RecognitionProviderOperatingMode
-  private let speechRecognizer: SFSpeechRecognizer
-  private let transcriptionProcessor: TranscriptionProcessor
 
+  private var audioManager: AudioManager?
   private var lastSpeechRecognitionResult: SFSpeechRecognitionResult?
+  private var lastTranscription: SFTranscription?
+  private var operatingMode: RecognitionProviderOperatingMode?
   private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
   private var recognitionTask: SFSpeechRecognitionTask?
   private var retryCount: Int = 0
-  private var lastTranscription: SFTranscription?
+  private var speechRecognizer: SFSpeechRecognizer?
+  private var transcriptionProcessor: TranscriptionProcessor?
 
   // MARK: - State Property
 
@@ -148,7 +148,7 @@ final class RecognitionManager: ObservableObject {
   private func startListening() async throws {
     guard recognitionRequest != nil else { throw RecognitionManagerError.recognitionRequestNotSet }
     guard recognitionTask != nil else { throw RecognitionManagerError.recognitionTaskNotSet }
-    await audioManager.listen()
+    await audioManager?.listen()
     setState(.listening)
     delegate?.recognitionManagerDidStartSuccessfully(self)
   }
@@ -158,7 +158,7 @@ final class RecognitionManager: ObservableObject {
       throw RecognitionManagerError.recognitionRequestNotSet
     }
 
-    recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) { [weak self] result, error in
+    recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest) { [weak self] result, error in
       guard let self, self.isFunctionning() else { return }
 
       if let error {
@@ -167,7 +167,7 @@ final class RecognitionManager: ObservableObject {
       }
 
       guard let result else { self.setState(.error(RecognitionManagerError.unexpectedRecognitionResult)); return }
-      self.transcriptionProcessor.parse(speechRecognitionResult: result)
+      self.transcriptionProcessor?.parse(speechRecognitionResult: result)
     }
 
     // Establishing KVO mechanism for the `recognitionTask` object’s `isFinishing` property. The
@@ -213,7 +213,7 @@ final class RecognitionManager: ObservableObject {
   /// Stops and cleans up the recognition process.
   func stopAndClean() {
     setState(.stopping)
-    audioManager.stopAndClean()
+    audioManager?.stopAndClean()
     recognitionTask?.cancel()
     recognitionTask = nil
     recognitionRequest = nil

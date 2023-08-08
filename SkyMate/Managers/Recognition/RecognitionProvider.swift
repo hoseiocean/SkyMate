@@ -150,13 +150,13 @@ final class RecognitionProvider: ObservableObject {
   func loadDictionaries() -> Bool {
     for type in SMTermType.allCases {
       do {
-        _ = try DictionaryManager.shared.content(forSMTermType: type)
+        _ = try DictionaryManager.shared.content(forSMTermType: type, inLanguage: LanguageManager.shared.currentLanguage.value)
       } catch {
         DispatchQueue.main.sync {
           self.hasCardBeenGenerated = true
           let language = self.languageManager.currentLanguage.value
           let languageStringKey = "RecognitionProviderText_" + String(describing: language)
-          let languageName = self.languageManager.localizedString(forKey: languageStringKey, inLanguage: language) ?? languageStringKey
+          let languageName = self.languageManager.localizedString(forKey: languageStringKey, inLanguage: language)
           let contentString = String(format: RecognitionProviderText.missingDictionariesContent.localized, languageName)
           let card = Card(
             title: RecognitionProviderText.missingDictionariesTitle.localized,
@@ -201,6 +201,7 @@ final class RecognitionProvider: ObservableObject {
   // MARK: - Deinitialization
 
   deinit {
+    recognitionManager = nil
     NotificationCenter.default.removeObserver(self, name: .languageDidChange, object: nil)
   }
 }
