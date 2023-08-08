@@ -76,11 +76,20 @@ final class DictionaryManager {
   /// The shared singleton instance of the DictionaryManager.
   static let shared = DictionaryManager()
 
+  var deinitCallback: (() -> Void)?
+  var isTesting = false
+
   // MARK: - Initializer
 
+#if DEBUG
+  init() {
+    NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)
+  }
+#else
   private init() {
     NotificationCenter.default.addObserver(self, selector: #selector(languageDidChange), name: .languageDidChange, object: nil)
   }
+#endif
 
   // MARK: - Cache Management
 
@@ -108,7 +117,7 @@ final class DictionaryManager {
   /// - Returns: The dictionary of homophones to SM terms.
   /// - Throws: Throws `DictionaryManagerError.dictionaryNotFound` or `DictionaryManagerError.invalidDictionaryContent`
   ///   if the dictionary could not be found or if its content is invalid.
-  func content(forSMTermType termType: SMTermType, inLanguage language: SupportedLanguage = LanguageManager.shared.currentLanguage.value) throws -> HomophonesDictionary? {
+  func content(forSMTermType termType: SMTermType, inLanguage language: SupportedLanguage) throws -> HomophonesDictionary? {
 
     // Don’t waste time if we already have the requested dictionary!
     if let cachedDictionary = cachedDictionaries[termType], cachedDictionary.language == language {
@@ -116,12 +125,12 @@ final class DictionaryManager {
     }
 
     // Let’s lose some only if we need to load this dictionary…
-    let languageBundle = languageManager.languageBundle(for: language) ?? Bundle.main
+    let languageBundle = languageManager.languageBundle(for: language)
+    guard let languageBundle else { throw DictionaryManagerError.dictionaryNotFound }
+
     let fileName = termType.type.resourceName
     let stringsFile = Const.File.Extension.strings
-    let bundlePath = languageBundle.path(forResource: fileName, ofType: stringsFile)
-
-    guard let bundlePath else { throw DictionaryManagerError.dictionaryNotFound }
+    let bundlePath = languageBundle.path(forResource: fileName, ofType: stringsFile) ?? Bundle.main.bundlePath
 
     guard
       let dictionaryContent = NSDictionary(contentsOfFile: bundlePath) as? HomophonesDictionary,
@@ -222,6 +231,9 @@ final class DictionaryManager {
   /// It is responsible for cleaning up and clearing any cached data.
   deinit {
     clearCache()
+    if isTesting {
+      deinitCallback?()
+    }
   }
 }
 
