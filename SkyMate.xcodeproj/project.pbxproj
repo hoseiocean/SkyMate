@@ -67,6 +67,8 @@
 		E9D9E7492A7BB52F00FEF741 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = E9D9E7482A7BB52F00FEF741 /* FirebaseCrashlytics */; };
 		E9D9E74B2A7BB52F00FEF741 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = E9D9E74A2A7BB52F00FEF741 /* FirebasePerformance */; };
 		E9E508A32A8010A000BE2734 /* SkyMateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E508A22A8010A000BE2734 /* SkyMateTests.swift */; };
+		E9E508AA2A8121DF00BE2734 /* DictionaryManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E508A92A8121DF00BE2734 /* DictionaryManagerTests.swift */; };
+		E9E508AC2A812CF800BE2734 /* LanguageManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E508AB2A812CF800BE2734 /* LanguageManagerTests.swift */; };
 		E9F1DC2C2A54BDFB0077A20B /* Letters.strings in Resources */ = {isa = PBXBuildFile; fileRef = E9F1DC2E2A54BDFB0077A20B /* Letters.strings */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +146,8 @@
 		E9D9E73D2A7B8EBD00FEF741 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "SkyMate/Resources/GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		E9E508A02A8010A000BE2734 /* SkyMateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkyMateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9E508A22A8010A000BE2734 /* SkyMateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyMateTests.swift; sourceTree = "<group>"; };
+		E9E508A92A8121DF00BE2734 /* DictionaryManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryManagerTests.swift; sourceTree = "<group>"; };
+		E9E508AB2A812CF800BE2734 /* LanguageManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManagerTests.swift; sourceTree = "<group>"; };
 		E9F1DC2D2A54BDFB0077A20B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Letters.strings; sourceTree = "<group>"; };
 		E9F1DC2F2A54BDFC0077A20B /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Letters.strings; sourceTree = "<group>"; };
 		E9F1DC302A54BDFD0077A20B /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Letters.strings; sourceTree = "<group>"; };
@@ -384,6 +388,8 @@
 			isa = PBXGroup;
 			children = (
 				E9E508A22A8010A000BE2734 /* SkyMateTests.swift */,
+				E9E508A92A8121DF00BE2734 /* DictionaryManagerTests.swift */,
+				E9E508AB2A812CF800BE2734 /* LanguageManagerTests.swift */,
 			);
 			path = SkyMateTests;
 			sourceTree = "<group>";
@@ -572,6 +578,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9E508A32A8010A000BE2734 /* SkyMateTests.swift in Sources */,
+				E9E508AC2A812CF800BE2734 /* LanguageManagerTests.swift in Sources */,
+				E9E508AA2A8121DF00BE2734 /* DictionaryManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
